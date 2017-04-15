@@ -2,21 +2,17 @@ package fi.aalto.msp2017.shoppinglist;
 
 import android.app.ProgressDialog;
 import android.content.Intent;
+import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatActivity;
-import android.os.Bundle;
 import android.text.TextUtils;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
-import android.view.ViewGroup;
 import android.widget.Button;
-import android.widget.CompoundButton;
 import android.widget.EditText;
 import android.widget.ImageView;
-import android.widget.LinearLayout;
-import android.widget.RelativeLayout;
 import android.widget.Switch;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -44,12 +40,6 @@ import com.google.firebase.auth.GoogleAuthProvider;
 import com.google.firebase.auth.UserInfo;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
-
-import java.util.Arrays;
-
-import static fi.aalto.msp2017.shoppinglist.R.id.etLoginEmail;
-import static fi.aalto.msp2017.shoppinglist.R.id.etLoginPassword;
-import static fi.aalto.msp2017.shoppinglist.R.id.tvSwitch;
 
 
 public class MainActivity extends AppCompatActivity {
@@ -96,36 +86,6 @@ public class MainActivity extends AppCompatActivity {
         imgGoogle.setImageResource(R.drawable.google_image);
 
 
-       /* switchLogin.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
-            @Override
-            public void onCheckedChanged(CompoundButton compoundButton, boolean isChecked) {
-                if (isChecked) {
-                    tvSocial.setText("You can sign in with your own accounts");
-                    tvSwitch.setText("I have List account");
-                    layoutSignup.setVisibility(View.INVISIBLE);
-                    btnSignup.setVisibility(View.INVISIBLE);
-                    layoutLogin.setVisibility(View.VISIBLE);
-                    btnLogin.setVisibility(View.VISIBLE);
-                    RelativeLayout.LayoutParams params = new RelativeLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT,
-                            ViewGroup.LayoutParams.WRAP_CONTENT);
-                    params.addRule(RelativeLayout.ABOVE, R.id.layoutLogin);
-                    layoutList.setLayoutParams(params);
-
-                } else {
-                    tvSocial.setText("You can sign up with your own accounts");
-                    tvSwitch.setText("I don't have List account");
-                    layoutLogin.setVisibility(View.INVISIBLE);
-                    btnLogin.setVisibility(View.INVISIBLE);
-                    layoutSignup.setVisibility(View.VISIBLE);
-                    btnSignup.setVisibility(View.VISIBLE);
-                    RelativeLayout.LayoutParams params = new RelativeLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT,
-                            ViewGroup.LayoutParams.WRAP_CONTENT);
-                    params.addRule(RelativeLayout.ABOVE, R.id.layoutSignup);
-                    layoutList.setLayoutParams(params);
-                }
-            }
-
-        });*/
 
         //attaching listener to LogIn button
         btnSignup.setOnClickListener(new View.OnClickListener() {
@@ -167,6 +127,8 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onSuccess(LoginResult loginResult) {
                 handleFacebookAccessToken(loginResult.getAccessToken());
+                Intent intent = new Intent(MainActivity.this, ShoppingListActivity.class);
+                startActivity(intent);
             }
 
             @Override
@@ -197,8 +159,9 @@ public class MainActivity extends AppCompatActivity {
         imgFacebook.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                LoginManager.getInstance()
-                        .logInWithReadPermissions(MainActivity.this, Arrays.asList("email", "public_profile"));
+                emailLogin();
+                Intent intent = new Intent(MainActivity.this, ShoppingListActivity.class);
+                startActivity(intent);
             }
         });
 
@@ -254,6 +217,9 @@ public class MainActivity extends AppCompatActivity {
         String email = login_email.getText().toString();
         String password = login_password.getText().toString();
 
+        email = "sunil@sunil.com";
+        password = "sunil.2013";
+
         if(TextUtils.isEmpty(email) || TextUtils.isEmpty(password)) {
             Toast.makeText(MainActivity.this, "Fill all the fields", Toast.LENGTH_SHORT).show();
 
@@ -266,9 +232,6 @@ public class MainActivity extends AppCompatActivity {
                     if (task.isSuccessful()) {
                         Toast.makeText(MainActivity.this, "Login successful", Toast.LENGTH_SHORT).show();
                         mProgress.dismiss();
-                        Intent intent = new Intent(MainActivity.this, MainActivity.class);
-                        startActivity(intent);
-
                     } else {
                         Toast.makeText(MainActivity.this, "Wrong email or password", Toast.LENGTH_SHORT).show();
                     }
