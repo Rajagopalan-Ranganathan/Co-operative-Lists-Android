@@ -17,7 +17,6 @@ public class ListItem implements IItem {
 
     private String itemName;
     private String owner;
-    private String itemId;
     private Integer quantity;
     private HashMap<String, Object> timestampCreated;
     private String itemKey;
@@ -90,9 +89,6 @@ public class ListItem implements IItem {
     public void setQuantity(Integer quantity) {
         this.quantity = quantity;
     }
-    public String getItemId() {
-        return itemId;
-    }
 
 
     public String GetMoreDetails()
@@ -102,9 +98,6 @@ public class ListItem implements IItem {
         return "x " + getQuantity().toString();
     }
 
-    public void setItemId(String itemId) {
-        this.itemId = itemId;
-    }
 
     public void SaveToDB(String listID)
     {
