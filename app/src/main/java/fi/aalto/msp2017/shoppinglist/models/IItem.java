@@ -8,5 +8,5 @@ public interface IItem {
     public String getItemName();
     public String getImageName();
     public String getItemKey();
-
+    public String GetMoreDetails();
 }

@@ -3,7 +3,9 @@ package fi.aalto.msp2017.shoppinglist.models;
 import android.text.TextUtils;
 
 import com.firebase.client.ServerValue;
+import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.Exclude;
+import com.google.firebase.database.FirebaseDatabase;
 
 import java.util.HashMap;
 
@@ -12,12 +14,18 @@ import java.util.HashMap;
  */
 
 public class ListItem implements IItem {
+
     private String itemName;
     private String owner;
     private String itemId;
     private Integer quantity;
     private HashMap<String, Object> timestampCreated;
     private String itemKey;
+    DatabaseReference masterItemRef;
+    DatabaseReference listItemRef;
+    DatabaseReference selfRef;
+    final FirebaseDatabase database = FirebaseDatabase.getInstance();
+
     public ListItem(){}
 
     private String imageName;
@@ -25,7 +33,7 @@ public class ListItem implements IItem {
     private ListItem(String itemName, String owner) {
         this.itemName = itemName;
         this.owner = owner;
-        this.quantity = 0;
+        this.quantity = 1;
         HashMap<String, Object> timestampNowObject = new HashMap<String, Object>();
         timestampNowObject.put("timestamp", ServerValue.TIMESTAMP);
         this.timestampCreated = timestampNowObject;
@@ -86,7 +94,28 @@ public class ListItem implements IItem {
         return itemId;
     }
 
+
+    public String GetMoreDetails()
+    {
+        if (!TextUtils.isEmpty(getOwner()))
+            return "x " + getQuantity().toString()+" by "+ getOwner();
+        return "x " + getQuantity().toString();
+    }
+
     public void setItemId(String itemId) {
         this.itemId = itemId;
+    }
+
+    public void SaveToDB(String listID)
+    {
+        listItemRef = database.getReference("shoppinglist").child(listID).child("items");
+        listItemRef.push().setValue(this);
+
+    }
+
+    public void Delete(String listID)
+    {
+        listItemRef = database.getReference("shoppinglist").child(listID).child("items");
+        listItemRef.push().setValue(this);
     }
 }

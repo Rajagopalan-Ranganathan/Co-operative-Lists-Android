@@ -3,7 +3,10 @@ package fi.aalto.msp2017.shoppinglist.models;
 import android.text.TextUtils;
 
 import com.firebase.client.ServerValue;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.Exclude;
+import com.google.firebase.database.FirebaseDatabase;
 
 import java.util.HashMap;
 
@@ -15,6 +18,11 @@ public class MasterItem implements IItem {
     private String itemName;
     private String itemKey;
     private HashMap<String, Object> timestampCreated;
+    DatabaseReference masterItemRef ;
+    DatabaseReference listItemRef;
+    DatabaseReference selfRef;
+    final FirebaseDatabase database = FirebaseDatabase.getInstance();
+
     public MasterItem(){}
 
     private String imageName;
@@ -67,5 +75,17 @@ public class MasterItem implements IItem {
     public void setTimestampLastChangedToNow() {
         HashMap<String, Object> timestampNowObject = new HashMap<String, Object>();
         timestampNowObject.put("timestamp", ServerValue.TIMESTAMP);
+    }
+    public String GetMoreDetails()
+    {
+        return "";
+    }
+    public void SaveToDB()
+    {
+        masterItemRef = database.getReference("masteritems");
+        String key = masterItemRef.push().getKey();
+        this.setItemKey(key);
+        selfRef = database.getReference("users").child(FirebaseAuth.getInstance().getCurrentUser().getUid());
+        selfRef.child("items").child(key).setValue(this);
     }
 }
