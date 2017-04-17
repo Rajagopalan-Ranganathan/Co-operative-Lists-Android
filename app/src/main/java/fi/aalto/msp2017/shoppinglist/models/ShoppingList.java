@@ -12,8 +12,6 @@ public class ShoppingList {
     private String listName;
     private String owner;
     private HashMap<String, Object> timestampCreated;
-
-
     public ShoppingList(String listName, String owner) {
         this.listName = listName;
         this.owner = owner;
@@ -21,6 +19,7 @@ public class ShoppingList {
         timestampNowObject.put("timestamp", ServerValue.TIMESTAMP);
         this.timestampCreated = timestampNowObject;
     }
+
     public String getListName() {
         return listName;
     }

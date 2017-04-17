@@ -14,21 +14,32 @@ import java.util.HashMap;
 public class ListItem implements IItem {
     private String itemName;
     private String owner;
-
     private String itemId;
     private Integer quantity;
     private HashMap<String, Object> timestampCreated;
+    private String itemKey;
     public ListItem(){}
 
     private String imageName;
 
-    public ListItem(String itemName, String owner) {
+    private ListItem(String itemName, String owner) {
         this.itemName = itemName;
         this.owner = owner;
         this.quantity = 0;
         HashMap<String, Object> timestampNowObject = new HashMap<String, Object>();
         timestampNowObject.put("timestamp", ServerValue.TIMESTAMP);
         this.timestampCreated = timestampNowObject;
+    }
+    public ListItem(String listName, String owner, String itemKey) {
+        this(listName, owner);
+        this.itemKey = itemKey;
+    }
+    public String getItemKey() {
+        return itemKey;
+    }
+
+    public void setItemKey(String itemKey) {
+        this.itemKey = itemKey;
     }
     public String getItemName() {
         return itemName;

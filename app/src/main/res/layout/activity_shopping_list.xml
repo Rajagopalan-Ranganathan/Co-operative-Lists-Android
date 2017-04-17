@@ -1,8 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
-<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
-    android:id="@+id/container_scroll_view"
-    android:layout_width="match_parent"
+<ScrollView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="fill_parent"
     android:layout_height="wrap_content"
+    android:layout_marginTop="25dp"
     android:fillViewport="true">
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
@@ -24,12 +26,12 @@
         android:inputType="text" />
 
     <EditText
-    android:id="@+id/title"
-    android:layout_width="fill_parent"
-    android:layout_height="wrap_content"
-    android:hint="List name"
+        android:id="@+id/title"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:hint="List name"
         android:visibility="gone"
-    android:inputType="text" />
+        android:inputType="text" />
 
     <Button
         android:id="@+id/createNew"
@@ -56,7 +58,7 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="16dp"
         android:text="Unassigned"
-       android:gravity="left|center_vertical"
+        android:gravity="left|center_vertical"
         android:textStyle="bold" />
     <GridView
         android:id="@+id/gvUnassigned"
@@ -80,6 +82,19 @@
         android:text="Assigned"
         android:gravity="left|center_vertical"
         android:textStyle="bold" />
+    <GridView
+        android:id="@+id/gvAssigned"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="5dp"
+        android:columnWidth="100dp"
+        android:drawSelectorOnTop="true"
+        android:gravity="center"
+        android:numColumns="auto_fit"
+        android:stretchMode="columnWidth"
+        android:verticalSpacing="5dp"
+        android:focusable="true"
+        android:clickable="true"/>
     <Button
         android:id="@+id/btnNotInList"
         style="?android:textAppearanceSmall"

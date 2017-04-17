@@ -1,10 +1,8 @@
 package fi.aalto.msp2017.shoppinglist;
 
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.app.AppCompatActivity;
 import android.view.Menu;
-import android.view.MenuItem;
-import android.widget.Toast;
 
 public class AccountActivity extends AppCompatActivity {
 

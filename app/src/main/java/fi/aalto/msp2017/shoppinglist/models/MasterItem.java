@@ -13,7 +13,7 @@ import java.util.HashMap;
 
 public class MasterItem implements IItem {
     private String itemName;
-    private Integer quantity;
+    private String itemKey;
     private HashMap<String, Object> timestampCreated;
     public MasterItem(){}
 
@@ -24,6 +24,19 @@ public class MasterItem implements IItem {
         HashMap<String, Object> timestampNowObject = new HashMap<String, Object>();
         timestampNowObject.put("timestamp", ServerValue.TIMESTAMP);
         this.timestampCreated = timestampNowObject;
+    }
+    public MasterItem(String itemName, String itemKey) {
+        this(itemName);
+        this.itemKey = itemKey;
+    }
+
+    @Exclude
+    public String getItemKey() {
+        return itemKey;
+    }
+
+    public void setItemKey(String itemKey) {
+        this.itemKey = itemKey;
     }
     public String getItemName() {
         return itemName;

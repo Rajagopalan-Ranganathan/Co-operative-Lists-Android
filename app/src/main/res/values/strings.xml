@@ -3,4 +3,8 @@
     <string name="facebook_provider_id">facebook.com</string>
     <string name="facebook_app_id">1335539829869377</string>
     <string name="title_activity_shopping_list">ShoppingList</string>
+    <string name="FBDB_MASTERITEMS">masteritems</string>
+    <string name="FBDB_USERS">users</string>
+    <string name="FBDB_SHOPPINGLIST">shoppinglist</string>
+    <string name="FBDB_ITEMS">items</string>
 </resources>

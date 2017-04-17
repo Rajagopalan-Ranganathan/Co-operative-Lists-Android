@@ -3,6 +3,7 @@ package fi.aalto.msp2017.shoppinglist;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.text.Editable;
+import android.text.TextUtils;
 import android.text.TextWatcher;
 import android.util.Log;
 import android.view.View;
@@ -34,24 +35,28 @@ public class ShoppingListActivity extends AppCompatActivity {
     private List<IItem> listItems = new ArrayList<>();
     private List<IItem> unassignedItems = new ArrayList<>();
     private List<IItem> assignedItems = new ArrayList<>();
-    private GridView gvNotInList, gvUnassigned;
+    private GridView gvNotInList, gvUnassigned, gvAssigned;
     private ListItemAdapter notInListItemAdapter, unassignedAdapter, assignedAdapter;
     private static final String LOG_TAG = ShoppingListActivity.class.getSimpleName();
     DatabaseReference masterItemRef;
     DatabaseReference listItemRef;
+    DatabaseReference selfRef;
 
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_shopping_list);
-        masterItemRef = database.getReference("masteritems");
-        listItemRef = database.getReference("shoppinglist").child(listId).child("items");
+        masterItemRef = database.getReference(getString(R.string.FBDB_MASTERITEMS));
+        selfRef = database.getReference(getString(R.string.FBDB_USERS)).child(FirebaseAuth.getInstance().getCurrentUser().getUid());
+        listItemRef = database.getReference(getString(R.string.FBDB_SHOPPINGLIST)).child(listId).child(getString(R.string.FBDB_ITEMS));
         edit_Title = (EditText) findViewById(R.id.title);
         edit_Search_Item = (EditText) findViewById(R.id.search);
 
         gvNotInList = (GridView) findViewById(R.id.gvNotInList);
         gvUnassigned = (GridView) findViewById(R.id.gvUnassigned);
+        gvAssigned = (GridView) findViewById(R.id.gvAssigned);
+
         PopulateGVUnassigned();
         PopulateGVNotInList();
 
@@ -60,6 +65,7 @@ public class ShoppingListActivity extends AppCompatActivity {
             @Override
             public void afterTextChanged(Editable arg0) {
                 // TODO Auto-generated method stub
+                PopulateGVUnassigned();
                 PopulateGVNotInList();
             }
 
@@ -87,9 +93,17 @@ public class ShoppingListActivity extends AppCompatActivity {
         findViewById(R.id.btnNotInList).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                    gvNotInList.setVisibility( gvNotInList.isShown()
-                            ? View.GONE
-                            : View.VISIBLE );
+                gvNotInList.setVisibility( gvNotInList.isShown()
+                        ? View.GONE
+                        : View.VISIBLE );
+            }
+        });
+        findViewById(R.id.btnAssigned).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                gvAssigned.setVisibility( gvAssigned.isShown()
+                        ? View.GONE
+                        : View.VISIBLE );
             }
         });
         findViewById(R.id.createNew).setOnClickListener(new View.OnClickListener() {
@@ -104,10 +118,27 @@ public class ShoppingListActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 final DatabaseReference listItemRef = database.getReference("masteritems");
-                listItemRef.push().setValue(new ListItem(edit_Title.getText().toString(), null));
+//                listItemRef.push().setValue(new ListItem(edit_Title.getText().toString(), null));
+            }
+        });
+        ((GridView) findViewById(R.id.gvUnassigned)).setOnItemLongClickListener(new AdapterView.OnItemLongClickListener() {
+            @Override
+            public boolean onItemLongClick(AdapterView<?> parent, View view, int position, long id) {
+                // Get the GridView selected/clicked item text
+                RemoveItemFromList(parent, position);
+
+                return true;
             }
         });
 
+        ((GridView) findViewById(R.id.gvAssigned)).setOnItemLongClickListener(new AdapterView.OnItemLongClickListener() {
+            @Override
+            public boolean onItemLongClick(AdapterView<?> parent, View view, int position, long id) {
+                // Get the GridView selected/clicked item text
+                RemoveItemFromList(parent, position);
+                return true;
+            }
+        });
         ((GridView) findViewById(R.id.gvNotInList)).setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
@@ -115,62 +146,88 @@ public class ShoppingListActivity extends AppCompatActivity {
                 Log.d(LOG_TAG,""+position);
                 MasterItem selectedItem = (MasterItem) parent.getItemAtPosition(position);
                 Toast.makeText(ShoppingListActivity.this,selectedItem.getItemName(), Toast.LENGTH_SHORT).show();
-                listItemRef.push().setValue(new ListItem(selectedItem.getItemName(), null));
+                if(TextUtils.isEmpty(selectedItem.getItemKey())) {
+                    String key = masterItemRef.push().getKey();
+                    selfRef.child("items").child(key).setValue(selectedItem);
+                    selectedItem.setItemKey(key);
+                }
+                listItemRef.push().setValue(new ListItem(selectedItem.getItemName(), null, selectedItem.getItemKey()));
                 listItems.remove(selectedItem);
                 notInListItemAdapter.notifyDataSetChanged();
             }
         });
+    }
 
-
+    private void RemoveItemFromList(AdapterView<?> parent, int position) {
+        ListItem selectedItem = (ListItem) parent.getItemAtPosition(position);
+        Log.d(LOG_TAG,"Deleted Item : " + selectedItem.getItemKey());
+        listItemRef.orderByChild("itemKey").equalTo(selectedItem.getItemKey()).addListenerForSingleValueEvent(
+                new ValueEventListener() {
+                    @Override
+                    public void onDataChange(DataSnapshot dataSnapshot) {
+                        for(DataSnapshot ds : dataSnapshot.getChildren()) {
+                            ds.getRef().setValue(null);
+                            PopulateGVNotInList();
+                        }
+                    }
+                    @Override
+                    public void onCancelled(DatabaseError databaseError) {
+                        Log.w("TodoApp", "getUser:onCancelled", databaseError.toException());
+                    }
+                });
     }
 
     private void PopulateGVUnassigned(){
+        Log.d(LOG_TAG, "PopulateGVUnassigned: ");
         unassignedAdapter = new ListItemAdapter(this, R.layout.list_item_view, unassignedItems);
+        assignedAdapter = new ListItemAdapter(this, R.layout.list_item_view, assignedItems);
         final String searchtext = edit_Search_Item.getText().toString().trim();
         listItemRef.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
                 unassignedItems.clear();
+                assignedItems.clear();
                 for (DataSnapshot snapshot : dataSnapshot.getChildren()) {
                     ListItem item = snapshot.getValue(ListItem.class);
-                    if(item.getSearchResult(searchtext))
-                        unassignedItems.add(item);
-                    Log.d(LOG_TAG, "List Item Added: " + unassignedItems.size());
+                    if(item.getSearchResult(searchtext)) {
+                        if(TextUtils.isEmpty(item.getOwner())) {
+                            unassignedItems.add(item);
+                        }
+                        else {
+                            assignedItems.add(item);
+                        }
+                    }
                 }
                 unassignedAdapter.notifyDataSetChanged();
+                assignedAdapter.notifyDataSetChanged();
+
             }
             @Override
             public void onCancelled(DatabaseError databaseError) {
             }
         });
         gvUnassigned.setAdapter(unassignedAdapter);
+        gvAssigned.setAdapter(assignedAdapter);
     }
     private void PopulateGVNotInList() {
+        Log.d(LOG_TAG, "PopulateGVNotInList: ");
         notInListItemAdapter = new ListItemAdapter(this, R.layout.list_item_view, listItems);
         final String searchtext = edit_Search_Item.getText().toString().trim();
+        final List<IItem> myItems = new ArrayList<>();
         masterItemRef.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
                 listItems.clear();
                 for (DataSnapshot snapshot : dataSnapshot.getChildren()) {
                     MasterItem item = snapshot.getValue(MasterItem.class);
+                    item.setItemKey(snapshot.getKey());
                     if(item.getSearchResult(searchtext)) {
-                        boolean add = true;
-                        for(final IItem li : unassignedItems) {
-                            if(li.getItemName().equals(item.getItemName())) {
-                                add = true;
-                                break;
-                            }
-                        }
-                        if(add) {
+                        boolean present = isPresentInList(item);
+                        if(!present) {
                             listItems.add(item);
                         }
                     }
                     //Log.d(LOG_TAG, "List Item Added: " + listItems.size());
-                }
-                if(listItems.size()==0 && !searchtext.isEmpty()) {
-                    MasterItem item = new MasterItem(searchtext);
-                    listItems.add(item);
                 }
                 notInListItemAdapter.notifyDataSetChanged();
             }
@@ -178,7 +235,47 @@ public class ShoppingListActivity extends AppCompatActivity {
             public void onCancelled(DatabaseError databaseError) {
             }
         });
+        selfRef.child("items").addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(DataSnapshot dataSnapshot) {
+                for (DataSnapshot snapshot : dataSnapshot.getChildren()) {
+                    MasterItem item = snapshot.getValue(MasterItem.class);
+                    item.setItemKey(snapshot.getKey());
+                    boolean inMasterList = false;
+                    if(item.getSearchResult(searchtext)) {
+                        for(final IItem li : listItems){
+                            if(li.getItemKey().equals((item.getItemKey()))) {
+                                inMasterList = true;
+                                break;
+                            }
+
+                        }
+                        boolean present = isPresentInList(item);
+                        if(!present && !inMasterList) {
+                            listItems.add(item);
+                        }
+                    }
+                }
+                if(listItems.size()==0 && !searchtext.isEmpty()) {
+                    MasterItem item = new MasterItem(searchtext);
+                    listItems.add(item);
+                }
+            }
+            @Override
+            public void onCancelled(DatabaseError databaseError) {
+
+            }
+        });
         gvNotInList.setAdapter(notInListItemAdapter);
         //historyListView.setAdapter(listItemAdapter);
+    }
+
+    private boolean isPresentInList(MasterItem item) {
+        for(final IItem li : unassignedItems) {
+            if(li.getItemKey().equals(item.getItemKey())) {
+                return true;
+            }
+        }
+        return false;
     }
 }

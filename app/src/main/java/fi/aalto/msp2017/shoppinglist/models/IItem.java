@@ -7,5 +7,6 @@ package fi.aalto.msp2017.shoppinglist.models;
 public interface IItem {
     public String getItemName();
     public String getImageName();
+    public String getItemKey();
 
 }

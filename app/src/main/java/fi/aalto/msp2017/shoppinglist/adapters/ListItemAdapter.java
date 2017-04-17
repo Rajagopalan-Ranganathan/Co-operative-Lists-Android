@@ -28,7 +28,7 @@ public class ListItemAdapter extends ArrayAdapter<IItem> {
     private static final String LOG_TAG = ListItemAdapter.class.getSimpleName();
 
     public ListItemAdapter(Activity context, int layoutResourceId,
-                             List<IItem> listItems) {
+                           List<IItem> listItems) {
         super(context, layoutResourceId, listItems);
         this.context = context;
         this.listItems = listItems;
