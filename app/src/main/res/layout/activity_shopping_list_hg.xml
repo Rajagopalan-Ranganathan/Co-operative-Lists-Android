@@ -1,0 +1,138 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="fill_parent"
+    android:layout_height="wrap_content"
+    android:layout_marginTop="25dp"
+    android:fillViewport="true">
+    <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:tools="http://schemas.android.com/tools"
+        android:layout_width="match_parent"
+        android:layout_height="fill_parent"
+        android:gravity="center_horizontal"
+        android:orientation="vertical"
+        android:paddingBottom="@dimen/activity_vertical_margin"
+        android:paddingLeft="@dimen/activity_horizontal_margin"
+        android:paddingRight="@dimen/activity_horizontal_margin"
+        android:paddingTop="@dimen/activity_vertical_margin"
+        tools:context="fi.aalto.msp2017.shoppinglist.ShoppingListActivityHG">
+
+        <EditText
+            android:id="@+id/search"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:hint="Search item"
+            android:inputType="text" />
+
+        <EditText
+            android:id="@+id/title"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:hint="List name"
+            android:visibility="gone"
+            android:inputType="text" />
+
+        <Button
+            android:id="@+id/createNew"
+            style="?android:textAppearanceSmall"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:text="Add item to list"
+            android:visibility="gone"
+            android:textStyle="bold" />
+        <Button
+            android:id="@+id/createNewItem"
+            style="?android:textAppearanceSmall"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:text="Create New Item"
+            android:visibility="gone"
+            android:textStyle="bold" />
+        <Button
+            android:id="@+id/btnUnassigned"
+            style="?android:textAppearanceSmall"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:text="Unassigned"
+            android:gravity="left|center_vertical"
+            android:textStyle="bold" />
+        <com.jess.ui.TwoWayGridView
+            xmlns:android="http://schemas.android.com/apk/res/android"
+            xmlns:app="http://schemas.android.com/apk/res-auto"
+            android:background="#E8E8E8"
+            android:id="@+id/gvUnassigned"
+            android:layout_width="fill_parent"
+            android:layout_height="160dp"
+            app:cacheColorHint="#E8E8E8"
+            app:columnWidth="100dp"
+            app:rowHeight="150dp"
+            app:numColumns="auto_fit"
+            app:numRows="1"
+            app:verticalSpacing="16dp"
+            app:horizontalSpacing="16dp"
+            app:stretchMode="spacingWidthUniform"
+            app:scrollDirectionPortrait="horizontal"
+            app:scrollDirectionLandscape="horizontal"
+            app:gravity="center"/>
+        <Button
+            android:id="@+id/btnAssigned"
+            style="?android:textAppearanceSmall"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:text="Assigned"
+            android:gravity="left|center_vertical"
+            android:textStyle="bold" />
+    <com.jess.ui.TwoWayGridView
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        android:background="#E8E8E8"
+        android:id="@+id/gvAssigned"
+        android:layout_width="fill_parent"
+        android:layout_height="160dp"
+        app:cacheColorHint="#E8E8E8"
+        app:columnWidth="100dp"
+        app:rowHeight="150dp"
+        app:numColumns="auto_fit"
+        app:numRows="1"
+        app:verticalSpacing="16dp"
+        app:horizontalSpacing="16dp"
+        app:stretchMode="spacingWidthUniform"
+        app:scrollDirectionPortrait="horizontal"
+        app:scrollDirectionLandscape="horizontal"
+        app:gravity="center"
+        />
+        <Button
+            android:id="@+id/btnNotInList"
+            style="?android:textAppearanceSmall"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:text="Not in list"
+            android:gravity="left|center_vertical"
+            android:textStyle="bold" />
+    <com.jess.ui.TwoWayGridView
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        android:background="#E8E8E8"
+        android:id="@+id/gvNotInList"
+        android:layout_width="fill_parent"
+        android:layout_height="160dp"
+        app:cacheColorHint="#E8E8E8"
+        app:columnWidth="100dp"
+        app:rowHeight="150dp"
+        app:numColumns="auto_fit"
+        app:numRows="1"
+        app:verticalSpacing="16dp"
+        app:horizontalSpacing="16dp"
+        app:stretchMode="spacingWidthUniform"
+        app:scrollDirectionPortrait="horizontal"
+        app:scrollDirectionLandscape="horizontal"
+        app:gravity="center"
+        />
+    </LinearLayout>
+    </ScrollView>

@@ -29,6 +29,7 @@
             android:name=".ShoppingListActivity"
             android:label="@string/title_activity_shopping_list"
             android:theme="@style/AppTheme.NoActionBar" />
+        <activity android:name=".ShoppingListActivityHG"></activity>
     </application>
 
 </manifest>

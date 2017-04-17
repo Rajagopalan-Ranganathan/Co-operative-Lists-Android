@@ -127,7 +127,7 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onSuccess(LoginResult loginResult) {
                 handleFacebookAccessToken(loginResult.getAccessToken());
-                Intent intent = new Intent(MainActivity.this, ShoppingListActivity.class);
+                Intent intent = new Intent(MainActivity.this, ShoppingListActivityHG.class);
                 startActivity(intent);
             }
 
@@ -160,7 +160,7 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 emailLogin();
-                Intent intent = new Intent(MainActivity.this, ShoppingListActivity.class);
+                Intent intent = new Intent(MainActivity.this, ShoppingListActivityHG.class);
                 startActivity(intent);
             }
         });

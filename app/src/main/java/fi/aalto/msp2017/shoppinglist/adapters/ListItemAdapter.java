@@ -53,6 +53,7 @@ public class ListItemAdapter extends ArrayAdapter<IItem> {
         viewHolder.text.setText(listItemEntry.getItemName());
         int id = context.getResources().getIdentifier(listItemEntry.getImageName(), "drawable", context.getPackageName());
         viewHolder.thumbnail.setImageResource(id);
+
         return convertView;
     }
 
