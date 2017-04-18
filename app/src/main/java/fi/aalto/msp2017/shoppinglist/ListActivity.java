@@ -1,15 +1,12 @@
 package fi.aalto.msp2017.shoppinglist;
 
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.text.Editable;
 import android.text.TextWatcher;
 import android.util.Log;
-import android.view.LayoutInflater;
-import android.view.View;
-import android.view.ViewGroup;
 import android.widget.TextView;
 
 import com.google.firebase.database.DataSnapshot;
@@ -21,28 +18,23 @@ import com.google.firebase.database.ValueEventListener;
 import java.util.ArrayList;
 import java.util.List;
 
-import fi.aalto.msp2017.shoppinglist.adapters.ListItemAdapterRV;
-import fi.aalto.msp2017.shoppinglist.models.IItem;
-import fi.aalto.msp2017.shoppinglist.models.ListItem;
+import fi.aalto.msp2017.shoppinglist.adapters.ShoppingListAdapterRV;
+import fi.aalto.msp2017.shoppinglist.models.ShoppingList;
 
 public class ListActivity extends AppCompatActivity {
 
     private RecyclerView rv;
-    ListItemAdapterRV rvadapter;
-    DatabaseReference masterItemRef;
+    ShoppingListAdapterRV rvadapter;
+    DatabaseReference shoppingListRef;
     final FirebaseDatabase database = FirebaseDatabase.getInstance();
-    protected static List<IItem> inListItems = new ArrayList<>();
+    protected static List<ShoppingList> listItems = new ArrayList<>();
     private TextView searchTxt;
-    DatabaseReference listItemRef;
     protected static final String LOG_TAG = "TabFragment 1";
-    final String listId = "-KhhVOK1epo5xzo_E4vY";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_list);
-        masterItemRef = database.getReference(getString(R.string.FBDB_MASTERITEMS));
-        listItemRef = database.getReference(getString(R.string.FBDB_SHOPPINGLIST)).child(listId).child(getString(R.string.FBDB_ITEMS));
         searchTxt = (TextView)findViewById(R.id.slcv_search);
         rv = (RecyclerView)findViewById(R.id.rv_shop_list);
         LinearLayoutManager llm = new LinearLayoutManager(this);
@@ -72,17 +64,19 @@ public class ListActivity extends AppCompatActivity {
 
     private void PopulateGVInList(){
 
-        rvadapter = new ListItemAdapterRV(this, inListItems,"INLIST");
+        rvadapter = new ShoppingListAdapterRV(this, listItems);
         final String searchtext = searchTxt.getText().toString();
         Log.d(LOG_TAG, "SearchText: "+searchtext);
-        listItemRef.addValueEventListener(new ValueEventListener() {
+        shoppingListRef = database.getReference(getString(R.string.FBDB_SHOPPINGLIST));
+
+        shoppingListRef.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
-                inListItems.clear();
+                listItems.clear();
                 for (DataSnapshot snapshot : dataSnapshot.getChildren()) {
-                    ListItem item = snapshot.getValue(ListItem.class);
+                    ShoppingList item = snapshot.getValue(ShoppingList.class);
                     if(item.getSearchResult(searchtext)) {
-                        inListItems.add(item);
+                        listItems.add(item);
 
                     }
                 }

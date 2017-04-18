@@ -1,4 +1,5 @@
 package fi.aalto.msp2017.shoppinglist.models;
+
 import com.firebase.client.ServerValue;
 
 import java.util.HashMap;
@@ -45,4 +46,12 @@ public class    ShoppingList {
     }
 
 
+    public String getImageName() {
+            return "alphabet_"+listName.substring(0,1).toLowerCase();
+    }
+
+    public boolean getSearchResult(String searchtext) {
+        return listName.toLowerCase().contains(searchtext.toLowerCase());
+
+    }
 }

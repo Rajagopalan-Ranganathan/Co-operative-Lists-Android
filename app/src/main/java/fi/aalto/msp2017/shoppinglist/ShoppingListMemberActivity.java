@@ -90,7 +90,6 @@ public class ShoppingListMemberActivity extends AppCompatActivity {
                                 Log.d(LOG_TAG, ds.getValue().toString());
                             }
                             Log.d(LOG_TAG,dataSnapshot.getKey().toString());
-                            Toast.makeText(getApplicationContext(),dataSnapshot.getValue().toString(), Toast.LENGTH_SHORT ).show();
                         }
                     }
 
