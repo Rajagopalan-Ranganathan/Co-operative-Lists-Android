@@ -160,7 +160,8 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 emailLogin();
-                Intent intent = new Intent(MainActivity.this, ShoppingListActivityTab.class);
+                //Intent intent = new Intent(MainActivity.this, ShoppingListActivityTab.class);
+                Intent intent = new Intent(MainActivity.this, ListActivity.class);
                 startActivity(intent);
             }
         });

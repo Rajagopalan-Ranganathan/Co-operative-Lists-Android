@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context="fi.aalto.msp2017.shoppinglist.ListActivity">
+    <EditText
+        android:id="@+id/slcv_search"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:hint="Search item"
+        android:layout_alignParentTop="true"
+        android:inputType="text" />
+    <android.support.v7.widget.RecyclerView
+        android:layout_height="match_parent"
+        android:layout_width="match_parent"
+        android:id="@+id/rv_shop_list"
+        android:layout_below="@id/slcv_search">
+    </android.support.v7.widget.RecyclerView>
+
+
+</RelativeLayout>

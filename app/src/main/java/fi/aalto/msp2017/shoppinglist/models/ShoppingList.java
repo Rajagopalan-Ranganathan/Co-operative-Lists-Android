@@ -7,7 +7,7 @@ import java.util.HashMap;
  * Created by Sunil on 11-04-2017.
  */
 
-public class ShoppingList {
+public class    ShoppingList {
 
     private String listName;
     private String owner;
