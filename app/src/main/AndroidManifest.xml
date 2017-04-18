@@ -33,6 +33,7 @@
         <activity android:name=".ShoppingListActivityTab" />
         <activity android:name=".ListItemDetailsActivity" />
         <activity android:name=".ShoppingListMemberActivity"></activity>
+        <activity android:name=".ListActivity"></activity>
     </application>
 
 </manifest>
