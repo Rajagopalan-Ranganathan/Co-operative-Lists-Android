@@ -85,6 +85,7 @@ public class TabFragment2 extends Fragment {
     }
     private void GetAllItemsInList()
     {
+        listItemRef = database.getReference(getString(R.string.FBDB_SHOPPINGLIST)).child(listId).child(getString(R.string.FBDB_ITEMS));
         listItemRef.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
@@ -108,6 +109,7 @@ public class TabFragment2 extends Fragment {
         final String searchtext = searchTxt.getText().toString();
         final List<IItem> myItems = new ArrayList<>();
 
+        masterItemRef = database.getReference(getString(R.string.FBDB_MASTERITEMS));
         masterItemRef.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
@@ -128,6 +130,7 @@ public class TabFragment2 extends Fragment {
             public void onCancelled(DatabaseError databaseError) {
             }
         });
+        selfRef = database.getReference(getString(R.string.FBDB_USERS)).child(FirebaseAuth.getInstance().getCurrentUser().getUid());
 
         selfRef.child("items").addValueEventListener(new ValueEventListener() {
             @Override
