@@ -3,318 +3,183 @@
 
     <item
         is-multidex="false"
-        jar="C:\Users\sunil\.android\build-cache\e08323d9f7cd618f2d84d629c567ddc6f9672c97\output\jars\classes.jar"
+        jar="C:\Users\sunil\.android\build-cache\259880433c59335e3d8498942215001d4052282e\output\jars\classes.jar"
         jumboMode="false"
         optimize="true"
         revision="25.0.2"
-        sha1="ecb496cc08dd52551fc5ec6db3bc0632e95a89bb">
-        <dex dex="C:\Users\sunil\Dropbox\Aalto\MSP\Shopping-List\app\build\intermediates\pre-dexed\debug\classes_252cb4bf8aa03d3d6917e5382ab8b05e2a295707.jar" />
+        sha1="76fb65a4b41ea42dab8a1310ed772a2420c96b52">
+        <dex dex="C:\Users\sunil\Dropbox\Aalto\MSP\msp-2017\app\build\intermediates\pre-dexed\debug\classes_dc0a1b2fe3475698a74bcdc54c731da0aeba79e7.jar" />
     </item>
     <item
         is-multidex="false"
-        jar="C:\Users\sunil\.android\build-cache\d21e8f32a3b12f11cffd5e9c17c7df0aa527e877\output\jars\classes.jar"
+        jar="C:\Users\sunil\.android\build-cache\561c696dfd37307637acc3d9467a0cfd11d24604\output\jars\classes.jar"
         jumboMode="false"
         optimize="true"
         revision="25.0.2"
-        sha1="e96c6974cf924e7ee3b230e6847d5731423388c9">
-        <dex dex="C:\Users\sunil\Dropbox\Aalto\MSP\Shopping-List\app\build\intermediates\pre-dexed\debug\classes_1f280b6751f7e7c58c2231a089133e6162d2cc08.jar" />
+        sha1="75b1f366ff0bbc78f8b1f7cf0dc82e7c53afef6a">
+        <dex dex="C:\Users\sunil\Dropbox\Aalto\MSP\msp-2017\app\build\intermediates\pre-dexed\debug\classes_0f6446487855293a87a907091ec29cda487a6513.jar" />
     </item>
     <item
         is-multidex="false"
-        jar="C:\Users\sunil\.gradle\caches\modules-2\files-2.1\com.firebase\firebase-client-jvm\2.3.1\4d53b7d6983247af02b8fe7e4228fff555a5e828\firebase-client-jvm-2.3.1.jar"
+        jar="C:\Users\sunil\.android\build-cache\9bfb94d56e02c665cb0314fc7151ac25ab2c03f7\output\jars\libs\internal_impl-25.0.0.jar"
         jumboMode="false"
         optimize="true"
         revision="25.0.2"
-        sha1="4d53b7d6983247af02b8fe7e4228fff555a5e828">
-        <dex dex="C:\Users\sunil\Dropbox\Aalto\MSP\Shopping-List\app\build\intermediates\pre-dexed\debug\firebase-client-jvm-2.3.1_e8a0054802657b8c640b9c4adb968a9d324be2f1.jar" />
+        sha1="e5343c9d19cb19ff55f6b268c7f3fe8c9d224f6f">
+        <dex dex="C:\Users\sunil\Dropbox\Aalto\MSP\msp-2017\app\build\intermediates\pre-dexed\debug\internal_impl-25.0.0_c1d6a9518160a42f565a40cf1071c50b388d5322.jar" />
     </item>
     <item
         is-multidex="false"
-        jar="C:\Users\sunil\.android\build-cache\7468cd61e8542b073a6603c28b6799a82d7a31f7\output\jars\classes.jar"
+        jar="C:\Users\sunil\.android\build-cache\e335991dae6bc43540186b270a261095f7a53f57\output\jars\classes.jar"
         jumboMode="false"
         optimize="true"
         revision="25.0.2"
-        sha1="486371f97baad8e607f332f20fee1d3dd00a731a">
-        <dex dex="C:\Users\sunil\Dropbox\Aalto\MSP\Shopping-List\app\build\intermediates\pre-dexed\debug\classes_429351c78534696be1fac1ee0634868fbbd668b0.jar" />
+        sha1="53a420cd4f49274db6bd43475f8006ba67ef6bbd">
+        <dex dex="C:\Users\sunil\Dropbox\Aalto\MSP\msp-2017\app\build\intermediates\pre-dexed\debug\classes_1f2344073c2f5597fbc52821ea14d2a66658db53.jar" />
     </item>
     <item
         is-multidex="false"
-        jar="C:\Users\sunil\.gradle\caches\modules-2\files-2.1\com.parse.bolts\bolts-applinks\1.4.0\8ad21bf21784dacce5f2043afb97218cc377e835\bolts-applinks-1.4.0.jar"
+        jar="C:\Users\sunil\AppData\Local\Android\sdk\extras\m2repository\com\android\support\constraint\constraint-layout-solver\1.0.0-alpha9\constraint-layout-solver-1.0.0-alpha9.jar"
         jumboMode="false"
         optimize="true"
         revision="25.0.2"
-        sha1="8ad21bf21784dacce5f2043afb97218cc377e835">
-        <dex dex="C:\Users\sunil\Dropbox\Aalto\MSP\Shopping-List\app\build\intermediates\pre-dexed\debug\bolts-applinks-1.4.0_c3c3b898019bca5f6a78f28033bbeedc67ce85ef.jar" />
+        sha1="6a908fd0803cc5f65b007101002aec06dc7544da">
+        <dex dex="C:\Users\sunil\Dropbox\Aalto\MSP\msp-2017\app\build\intermediates\pre-dexed\debug\constraint-layout-solver-1.0.0-alpha9_2c0afd763ba95ba235794f237963741bc223681c.jar" />
     </item>
     <item
         is-multidex="false"
-        jar="C:\Users\sunil\.android\build-cache\97759850d6afaf78a44a9fbe4c056d013411d83f\output\jars\classes.jar"
+        jar="C:\Users\sunil\AppData\Local\Android\sdk\extras\android\m2repository\com\android\support\support-annotations\25.0.0\support-annotations-25.0.0.jar"
         jumboMode="false"
         optimize="true"
         revision="25.0.2"
-        sha1="6addaba208e21c6da776d0ca75b6b23a6ccd5499">
-        <dex dex="C:\Users\sunil\Dropbox\Aalto\MSP\Shopping-List\app\build\intermediates\pre-dexed\debug\classes_305ef1ada4786ce67986b6da087214a469441f52.jar" />
+        sha1="a22d2cc94da87b254451fa8ed28afc30b4653773">
+        <dex dex="C:\Users\sunil\Dropbox\Aalto\MSP\msp-2017\app\build\intermediates\pre-dexed\debug\support-annotations-25.0.0_292318fb5bf9731923034c091d632aa6ce2e9060.jar" />
     </item>
     <item
         is-multidex="false"
-        jar="C:\Users\sunil\.android\build-cache\81d7a2ddc4e910b53b460e8e60269da8760b5e4d\output\jars\classes.jar"
+        jar="C:\Users\sunil\.android\build-cache\dfee9a1215bfc001afcbbbf4f8f31e79f46f9e5c\output\jars\classes.jar"
         jumboMode="false"
         optimize="true"
         revision="25.0.2"
-        sha1="0d191c1a09e4892d059e5ce749e4ad4e08129e35">
-        <dex dex="C:\Users\sunil\Dropbox\Aalto\MSP\Shopping-List\app\build\intermediates\pre-dexed\debug\classes_3aebb8ffbb0200f24baa09fb9b304d9e8586989b.jar" />
+        sha1="26384be22ddc74cfe197ebda9edbc7d1fd8bd537">
+        <dex dex="C:\Users\sunil\Dropbox\Aalto\MSP\msp-2017\app\build\intermediates\pre-dexed\debug\classes_310bb27999e2479080e79551549bf0b3c1bc427d.jar" />
     </item>
     <item
         is-multidex="false"
-        jar="C:\Users\sunil\.android\build-cache\98c84ea513fdc822538af6e0b18c045fa3526b45\output\jars\classes.jar"
+        jar="C:\Users\sunil\.android\build-cache\84e43da6300a1dff7fd6450770be166b2072f5bf\output\jars\libs\internal_impl-25.0.0.jar"
         jumboMode="false"
         optimize="true"
         revision="25.0.2"
-        sha1="8f128aeeb7e31271b28a7adb9dac1f3a6ed9f5e7">
-        <dex dex="C:\Users\sunil\Dropbox\Aalto\MSP\Shopping-List\app\build\intermediates\pre-dexed\debug\classes_de13ea233fef8c9f50e9f673d46e387595a4a770.jar" />
+        sha1="ee5faf4dee5b6a4364bf51587871047dde7c703a">
+        <dex dex="C:\Users\sunil\Dropbox\Aalto\MSP\msp-2017\app\build\intermediates\pre-dexed\debug\internal_impl-25.0.0_ef354ba51667d0bdd453d47e9ed1e266ad7e9db6.jar" />
     </item>
     <item
         is-multidex="false"
-        jar="C:\Users\sunil\.android\build-cache\b8c2fdb82682c50b79cfa153abd0c5c30a3db5fe\output\jars\classes.jar"
+        jar="C:\Users\sunil\.android\build-cache\84e43da6300a1dff7fd6450770be166b2072f5bf\output\jars\classes.jar"
         jumboMode="false"
         optimize="true"
         revision="25.0.2"
-        sha1="9cca2818594cc5348806d6662133491e7ea0fa8d">
-        <dex dex="C:\Users\sunil\Dropbox\Aalto\MSP\Shopping-List\app\build\intermediates\pre-dexed\debug\classes_e9f874fa3e4f734a9edd8f76734fad4ab606725c.jar" />
+        sha1="07daa0b6e1d455c82a38422ffe287c18823d339a">
+        <dex dex="C:\Users\sunil\Dropbox\Aalto\MSP\msp-2017\app\build\intermediates\pre-dexed\debug\classes_bb1902e303b02fbff3e3ad42eb6003d01c53e1de.jar" />
     </item>
     <item
         is-multidex="false"
-        jar="C:\Users\sunil\.android\build-cache\044d58d619e37a9605b7cce888d62d9c6fcf42de\output\jars\classes.jar"
+        jar="C:\Users\sunil\.android\build-cache\eb04aa073c372286ed69e745fbb518b4d9ffaffb\output\jars\classes.jar"
         jumboMode="false"
         optimize="true"
         revision="25.0.2"
-        sha1="25438f55fc6d906a0e72f30b21487541430ede43">
-        <dex dex="C:\Users\sunil\Dropbox\Aalto\MSP\Shopping-List\app\build\intermediates\pre-dexed\debug\classes_4702fc2664329e005474c9fbcae0282cb488e991.jar" />
+        sha1="4ccbcda5c72027c7f7c14be9ff8640d9cb0d8da0">
+        <dex dex="C:\Users\sunil\Dropbox\Aalto\MSP\msp-2017\app\build\intermediates\pre-dexed\debug\classes_ac912083a443ee6acebddd8d2842fc8307560f8f.jar" />
     </item>
     <item
         is-multidex="false"
-        jar="C:\Users\sunil\.android\build-cache\4696d83553e04f6b4cab6418cf30f9aa2f269482\output\jars\classes.jar"
-        jumboMode="false"
-        optimize="true"
-        revision="25.0.2"
-        sha1="94ba691efc31bf53264db0716d9c9ec03843ea31">
-        <dex dex="C:\Users\sunil\Dropbox\Aalto\MSP\Shopping-List\app\build\intermediates\pre-dexed\debug\classes_f9fee59435f3ceb6fa35fa0b0fa87aa737cb3a2a.jar" />
-    </item>
-    <item
-        is-multidex="false"
-        jar="C:\Users\sunil\.android\build-cache\29d809ebb3be50b5977bc8637f320e2d978fe48e\output\jars\classes.jar"
-        jumboMode="false"
-        optimize="true"
-        revision="25.0.2"
-        sha1="433f4d6aa5f21f19552afe0e6c5eff0fedba73ad">
-        <dex dex="C:\Users\sunil\Dropbox\Aalto\MSP\Shopping-List\app\build\intermediates\pre-dexed\debug\classes_3792e326b4711a08ff670bbf95c46c41af8d9dd0.jar" />
-    </item>
-    <item
-        is-multidex="false"
-        jar="C:\Users\sunil\.gradle\caches\modules-2\files-2.1\com.parse.bolts\bolts-tasks\1.4.0\d85884acf6810a3bbbecb587f239005cbc846dc4\bolts-tasks-1.4.0.jar"
-        jumboMode="false"
-        optimize="true"
-        revision="25.0.2"
-        sha1="d85884acf6810a3bbbecb587f239005cbc846dc4">
-        <dex dex="C:\Users\sunil\Dropbox\Aalto\MSP\Shopping-List\app\build\intermediates\pre-dexed\debug\bolts-tasks-1.4.0_3d70bdfacd7d5803f2cbd401c8e28034c65b6a61.jar" />
-    </item>
-    <item
-        is-multidex="false"
-        jar="C:\Users\sunil\.android\build-cache\24d2c3f72ffd4550add0a417b6057a4c66a03eec\output\jars\classes.jar"
-        jumboMode="false"
-        optimize="true"
-        revision="25.0.2"
-        sha1="e2185aff89caeb337b1ffc36d5e525d8318e7cfe">
-        <dex dex="C:\Users\sunil\Dropbox\Aalto\MSP\Shopping-List\app\build\intermediates\pre-dexed\debug\classes_ec8b388ed64e25a78d84a79f7d325a7a9d5edc1b.jar" />
-    </item>
-    <item
-        is-multidex="false"
-        jar="C:\Users\sunil\.gradle\caches\modules-2\files-2.1\com.firebase\tubesock\0.0.11\d37cb67277928cf59344b4196af8d9cee1f1a27c\tubesock-0.0.11.jar"
-        jumboMode="false"
-        optimize="true"
-        revision="25.0.2"
-        sha1="d37cb67277928cf59344b4196af8d9cee1f1a27c">
-        <dex dex="C:\Users\sunil\Dropbox\Aalto\MSP\Shopping-List\app\build\intermediates\pre-dexed\debug\tubesock-0.0.11_be79afd5a528930fc85236ed6ec0a7e459be04b9.jar" />
-    </item>
-    <item
-        is-multidex="false"
-        jar="C:\Users\sunil\.android\build-cache\a20d7c55023d5688784eccb7e2e3b2b2d70d55df\output\jars\classes.jar"
-        jumboMode="false"
-        optimize="true"
-        revision="25.0.2"
-        sha1="c03bf57f358aa10d253f21989e93bcf6014b3b17">
-        <dex dex="C:\Users\sunil\Dropbox\Aalto\MSP\Shopping-List\app\build\intermediates\pre-dexed\debug\classes_e185ba9d6d1171405186773b4fa9a00e34bcda7f.jar" />
-    </item>
-    <item
-        is-multidex="false"
-        jar="C:\Users\sunil\.android\build-cache\90f05643877048b2d7f917828ff268942f867973\output\jars\classes.jar"
+        jar="C:\Users\sunil\.android\build-cache\cf75c404e99305b67ff5f0e29f906d7898f92fe9\output\jars\classes.jar"
         jumboMode="false"
         optimize="true"
         revision="25.0.2"
         sha1="d7c42c80f6509b9ea4db28ca7859ffae08ec5741">
-        <dex dex="C:\Users\sunil\Dropbox\Aalto\MSP\Shopping-List\app\build\intermediates\pre-dexed\debug\classes_207baf23bc9b0df1339855f1f966ac2861a4e48d.jar" />
+        <dex dex="C:\Users\sunil\Dropbox\Aalto\MSP\msp-2017\app\build\intermediates\pre-dexed\debug\classes_ef7e05a34c13ee1d92867c39abedfb638e6a75e0.jar" />
     </item>
     <item
         is-multidex="false"
-        jar="C:\Users\sunil\.android\build-cache\7f3d0827c653745669fd9ea2de295c7f1036f3ca\output\jars\classes.jar"
+        jar="C:\Users\sunil\.android\build-cache\65d9e941e87ef17320ef2a29b44c705fa0f7a990\output\jars\classes.jar"
         jumboMode="false"
         optimize="true"
         revision="25.0.2"
-        sha1="756f6297eef79784f5e356dcd4f39865028b2bd0">
-        <dex dex="C:\Users\sunil\Dropbox\Aalto\MSP\Shopping-List\app\build\intermediates\pre-dexed\debug\classes_c910dff72a3121d6bc1413ef07abbca857d6b3cd.jar" />
+        sha1="d29714cc76b38157e3cbd034c66e1ec808eb4c19">
+        <dex dex="C:\Users\sunil\Dropbox\Aalto\MSP\msp-2017\app\build\intermediates\pre-dexed\debug\classes_3e343de53d2f6a5b8ef25e3a6fd03b68e789a7f2.jar" />
     </item>
     <item
         is-multidex="false"
-        jar="C:\Users\sunil\.gradle\caches\modules-2\files-2.1\com.fasterxml.jackson.core\jackson-annotations\2.2.2\285cb9c666f0f0f3dd8a1be04e1f457eb7b15113\jackson-annotations-2.2.2.jar"
+        jar="C:\Users\sunil\.android\build-cache\f4099ffe13a4eb93b03caf9140463e0dbfb59141\output\jars\classes.jar"
         jumboMode="false"
         optimize="true"
         revision="25.0.2"
-        sha1="285cb9c666f0f0f3dd8a1be04e1f457eb7b15113">
-        <dex dex="C:\Users\sunil\Dropbox\Aalto\MSP\Shopping-List\app\build\intermediates\pre-dexed\debug\jackson-annotations-2.2.2_7c00f14c53cbf8be8d6cae039148ca0b3b8d9970.jar" />
+        sha1="8bc45ce1f63d1a391fd38b32a201be5a42f9c95d">
+        <dex dex="C:\Users\sunil\Dropbox\Aalto\MSP\msp-2017\app\build\intermediates\pre-dexed\debug\classes_3af6375a0e6f8338e881b81760dd300aef886bac.jar" />
     </item>
     <item
         is-multidex="false"
-        jar="C:\Users\sunil\.android\build-cache\2cdb601d1bd8e11c95588e81fceb8a71a2000676\output\jars\classes.jar"
+        jar="C:\Users\sunil\.android\build-cache\259880433c59335e3d8498942215001d4052282e\output\jars\libs\internal_impl-25.0.0.jar"
         jumboMode="false"
         optimize="true"
         revision="25.0.2"
-        sha1="e2719c102dca3a7a5b02ce07f769362da6ddb4ab">
-        <dex dex="C:\Users\sunil\Dropbox\Aalto\MSP\Shopping-List\app\build\intermediates\pre-dexed\debug\classes_ea7eb2029c0c6b75269392e03b4d1ed031ddc2c3.jar" />
+        sha1="665d21a8a069c96b4d9e8b434f5096d865b4e261">
+        <dex dex="C:\Users\sunil\Dropbox\Aalto\MSP\msp-2017\app\build\intermediates\pre-dexed\debug\internal_impl-25.0.0_0034454e6f80992d97c06b936828eedb7a48e1ce.jar" />
     </item>
     <item
         is-multidex="false"
-        jar="C:\Users\sunil\.android\build-cache\cff45ea91dacd7bc8d5836f8dd79df7a5fba43b3\output\jars\classes.jar"
+        jar="C:\Users\sunil\.android\build-cache\eb04aa073c372286ed69e745fbb518b4d9ffaffb\output\jars\libs\internal_impl-25.0.0.jar"
         jumboMode="false"
         optimize="true"
         revision="25.0.2"
-        sha1="de29a39f9260f88151b1ef453140e71c76b6c415">
-        <dex dex="C:\Users\sunil\Dropbox\Aalto\MSP\Shopping-List\app\build\intermediates\pre-dexed\debug\classes_7f7643d5176ef724725339fbbe98b3bd3adfc477.jar" />
+        sha1="3b61a70884adaf0be3fc06c70c801e3e6df13133">
+        <dex dex="C:\Users\sunil\Dropbox\Aalto\MSP\msp-2017\app\build\intermediates\pre-dexed\debug\internal_impl-25.0.0_a6e8f3ed28520425d3aaadab3202c22dadd3e0ed.jar" />
     </item>
     <item
         is-multidex="false"
-        jar="C:\Users\sunil\.android\build-cache\1c76f12626501e4bf4a6e437ff83a01c21e8fcd9\output\jars\classes.jar"
+        jar="C:\Users\sunil\.android\build-cache\9bfb94d56e02c665cb0314fc7151ac25ab2c03f7\output\jars\classes.jar"
         jumboMode="false"
         optimize="true"
         revision="25.0.2"
-        sha1="8a372c4191f80489770a231f7be4820b204b886a">
-        <dex dex="C:\Users\sunil\Dropbox\Aalto\MSP\Shopping-List\app\build\intermediates\pre-dexed\debug\classes_5bb2860c4f8c3bb5b9fb11c0c741a1e1fb1f4225.jar" />
+        sha1="26674000177e45447a0326a6ad84612761199a13">
+        <dex dex="C:\Users\sunil\Dropbox\Aalto\MSP\msp-2017\app\build\intermediates\pre-dexed\debug\classes_c6371f17732f6aa34c46e7bc257cd3ee67dc1166.jar" />
     </item>
     <item
         is-multidex="false"
-        jar="C:\Users\sunil\.android\build-cache\bdca5eda3885bb8b5d1bbb81f9b7cad304d42235\output\jars\classes.jar"
+        jar="C:\Users\sunil\.android\build-cache\6faef495b79e1fe18c35e6361bae2add9a7bc1e6\output\jars\classes.jar"
         jumboMode="false"
         optimize="true"
         revision="25.0.2"
-        sha1="6a70160a70685ce25bda1c6e094c73676a399039">
-        <dex dex="C:\Users\sunil\Dropbox\Aalto\MSP\Shopping-List\app\build\intermediates\pre-dexed\debug\classes_0fc78cffc60c40d3134400f4ced596b95b3986d7.jar" />
+        sha1="f2b64f6a762f61a2379d6a79af03e2ee56eefe0b">
+        <dex dex="C:\Users\sunil\Dropbox\Aalto\MSP\msp-2017\app\build\intermediates\pre-dexed\debug\classes_7934cd5af50adb719542c8a63d96ff38a03b1e9f.jar" />
     </item>
     <item
         is-multidex="false"
-        jar="C:\Users\sunil\.android\build-cache\9cd36e0de7219213450e6656e5ab69f8c2f63eb4\output\jars\classes.jar"
+        jar="C:\Users\sunil\.android\build-cache\4047d9b409471891dedf9213dd239d41f8f215eb\output\jars\classes.jar"
         jumboMode="false"
         optimize="true"
         revision="25.0.2"
-        sha1="6116e0e7069de7fc259aac8e08b84f32c2038231">
-        <dex dex="C:\Users\sunil\Dropbox\Aalto\MSP\Shopping-List\app\build\intermediates\pre-dexed\debug\classes_5320ab81559358bddf626f4510dd17a47de7ce41.jar" />
+        sha1="0c6d948e6cb9ea6f535d175fb61ba2930719c0e9">
+        <dex dex="C:\Users\sunil\Dropbox\Aalto\MSP\msp-2017\app\build\intermediates\pre-dexed\debug\classes_a672dfd0fcf8066f4e2a3f71a14673c6a1709125.jar" />
     </item>
     <item
         is-multidex="false"
-        jar="C:\Users\sunil\.android\build-cache\7a2f6043681cbe0641ab3a076754df797d6e5a08\output\jars\classes.jar"
+        jar="C:\Users\sunil\.android\build-cache\6f94b60855f374d831e6b8b7fad0137e830840b9\output\jars\classes.jar"
         jumboMode="false"
         optimize="true"
         revision="25.0.2"
-        sha1="eb0d830e3eabb9deb9ec44869cf7ac7ea1ad794c">
-        <dex dex="C:\Users\sunil\Dropbox\Aalto\MSP\Shopping-List\app\build\intermediates\pre-dexed\debug\classes_617f3f5170e5e6aa3324b6f4faa1ad1314dfe004.jar" />
+        sha1="5e497d60f0cb6ce87c458ac5420a46d0fed49bd0">
+        <dex dex="C:\Users\sunil\Dropbox\Aalto\MSP\msp-2017\app\build\intermediates\pre-dexed\debug\classes_0f29cb3e6e630f1296ee2d8810adff72d9dcf7cd.jar" />
     </item>
     <item
         is-multidex="false"
-        jar="C:\Users\sunil\.android\build-cache\ff1c030c9e31e0244599a7236864d37911a12b8d\output\jars\classes.jar"
+        jar="C:\Users\sunil\.android\build-cache\561c696dfd37307637acc3d9467a0cfd11d24604\output\jars\libs\internal_impl-25.0.0.jar"
         jumboMode="false"
         optimize="true"
         revision="25.0.2"
-        sha1="02741d05d4b697fba5e279e9881aaa1da0ca7c7f">
-        <dex dex="C:\Users\sunil\Dropbox\Aalto\MSP\Shopping-List\app\build\intermediates\pre-dexed\debug\classes_7efa2d592cb821bfce7a49b6bf782351fc6b880c.jar" />
-    </item>
-    <item
-        is-multidex="false"
-        jar="C:\Users\sunil\.gradle\caches\modules-2\files-2.1\com.fasterxml.jackson.core\jackson-databind\2.2.2\3c8f6018eaa72d43b261181e801e6f8676c16ef6\jackson-databind-2.2.2.jar"
-        jumboMode="false"
-        optimize="true"
-        revision="25.0.2"
-        sha1="3c8f6018eaa72d43b261181e801e6f8676c16ef6">
-        <dex dex="C:\Users\sunil\Dropbox\Aalto\MSP\Shopping-List\app\build\intermediates\pre-dexed\debug\jackson-databind-2.2.2_f7eb30f995a246b4ffd46484223d0e2891949edc.jar" />
-    </item>
-    <item
-        is-multidex="false"
-        jar="C:\Users\sunil\.android\build-cache\b3f5fa4348092788350651ba687fe13ca89aa5ff\output\jars\classes.jar"
-        jumboMode="false"
-        optimize="true"
-        revision="25.0.2"
-        sha1="0fb891e8f0cfba0513043a7bb357513d229ca2cd">
-        <dex dex="C:\Users\sunil\Dropbox\Aalto\MSP\Shopping-List\app\build\intermediates\pre-dexed\debug\classes_baa9c213989936f03391b916a73cf5703c1740fd.jar" />
-    </item>
-    <item
-        is-multidex="false"
-        jar="C:\Users\sunil\.android\build-cache\e12099d35a51d341148f2b986d05ccb3734536df\output\jars\classes.jar"
-        jumboMode="false"
-        optimize="true"
-        revision="25.0.2"
-        sha1="3e04ac8ca644ea7baddf6fdcf72e15c79e9df94a">
-        <dex dex="C:\Users\sunil\Dropbox\Aalto\MSP\Shopping-List\app\build\intermediates\pre-dexed\debug\classes_43bddce5621488769a5ab06a1dfb2ffc64d2a915.jar" />
-    </item>
-    <item
-        is-multidex="false"
-        jar="C:\Users\sunil\.android\build-cache\9db371bdca1c70160ceb6d661ade0a57b883eddf\output\jars\classes.jar"
-        jumboMode="false"
-        optimize="true"
-        revision="25.0.2"
-        sha1="7bde4c34162092e0a77e7f12dc85ed77c484cf5c">
-        <dex dex="C:\Users\sunil\Dropbox\Aalto\MSP\Shopping-List\app\build\intermediates\pre-dexed\debug\classes_8e72fad357c74f8793118f554d8b45f3544ec7ab.jar" />
-    </item>
-    <item
-        is-multidex="false"
-        jar="C:\Users\sunil\.gradle\caches\modules-2\files-2.1\com.fasterxml.jackson.core\jackson-core\2.2.2\d20be6a5ddd6f8cfd36ebf6dea329873a1c41f1b\jackson-core-2.2.2.jar"
-        jumboMode="false"
-        optimize="true"
-        revision="25.0.2"
-        sha1="d20be6a5ddd6f8cfd36ebf6dea329873a1c41f1b">
-        <dex dex="C:\Users\sunil\Dropbox\Aalto\MSP\Shopping-List\app\build\intermediates\pre-dexed\debug\jackson-core-2.2.2_f21b4c3801be1e7b0f183039bc0e1f2d4a6f52ba.jar" />
-    </item>
-    <item
-        is-multidex="false"
-        jar="C:\Users\sunil\.android\build-cache\7fc74679159b6a89bb735b2a5f8d657461e8af5a\output\jars\classes.jar"
-        jumboMode="false"
-        optimize="true"
-        revision="25.0.2"
-        sha1="9d2f2ae068777ce3d02708f705b67c50dba2f412">
-        <dex dex="C:\Users\sunil\Dropbox\Aalto\MSP\Shopping-List\app\build\intermediates\pre-dexed\debug\classes_6bbf6c80ac52b3aedd52285aab97fb9db0961ed1.jar" />
-    </item>
-    <item
-        is-multidex="false"
-        jar="C:\Users\sunil\.gradle\caches\modules-2\files-2.1\com.firebase\firebase-client-android\2.3.1\be29b24233711c419ce935aa0a1b12ebc49d1c9a\firebase-client-android-2.3.1.jar"
-        jumboMode="false"
-        optimize="true"
-        revision="25.0.2"
-        sha1="be29b24233711c419ce935aa0a1b12ebc49d1c9a">
-        <dex dex="C:\Users\sunil\Dropbox\Aalto\MSP\Shopping-List\app\build\intermediates\pre-dexed\debug\firebase-client-android-2.3.1_aa5ba30431d1d7925e0b732b1aaa37ef08888762.jar" />
-    </item>
-    <item
-        is-multidex="false"
-        jar="C:\Users\sunil\AppData\Local\Android\sdk\extras\android\m2repository\com\android\support\support-annotations\25.1.1\support-annotations-25.1.1.jar"
-        jumboMode="false"
-        optimize="true"
-        revision="25.0.2"
-        sha1="b59b6ee8d6ecc03e672d253800430343493a6ed8">
-        <dex dex="C:\Users\sunil\Dropbox\Aalto\MSP\Shopping-List\app\build\intermediates\pre-dexed\debug\support-annotations-25.1.1_b2286725a534988db57bba2bdcc463eed25803f2.jar" />
-    </item>
-    <item
-        is-multidex="false"
-        jar="C:\Users\sunil\.android\build-cache\aefe445d2be816d6e3e57241198b71e7bd3b0133\output\jars\classes.jar"
-        jumboMode="false"
-        optimize="true"
-        revision="25.0.2"
-        sha1="8010ae6ed32828a145b25ec97bc07b7a83c6318f">
-        <dex dex="C:\Users\sunil\Dropbox\Aalto\MSP\Shopping-List\app\build\intermediates\pre-dexed\debug\classes_9df40e218a42e06180c33fa4ab59730ddec3873b.jar" />
+        sha1="f2e3b9bc1ec25f652e8007ce7774c991e38f6a00">
+        <dex dex="C:\Users\sunil\Dropbox\Aalto\MSP\msp-2017\app\build\intermediates\pre-dexed\debug\internal_impl-25.0.0_6da5c2492bb6897cc19c87c5b8d672071466c085.jar" />
     </item>
 
 </items>
