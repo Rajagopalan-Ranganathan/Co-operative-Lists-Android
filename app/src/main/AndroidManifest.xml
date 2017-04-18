@@ -31,7 +31,8 @@
             android:theme="@style/AppTheme.NoActionBar" />
         <activity android:name=".ShoppingListActivityHG" />
         <activity android:name=".ShoppingListActivityTab" />
-        <activity android:name=".ListItemDetailsActivity"></activity>
+        <activity android:name=".ListItemDetailsActivity" />
+        <activity android:name=".ShoppingListMemberActivity"></activity>
     </application>
 
 </manifest>
