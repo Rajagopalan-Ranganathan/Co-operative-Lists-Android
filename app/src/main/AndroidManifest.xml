@@ -32,8 +32,10 @@
         <activity android:name=".ShoppingListActivityHG" />
         <activity android:name=".ShoppingListActivityTab" />
         <activity android:name=".ListItemDetailsActivity" />
-        <activity android:name=".ShoppingListMemberActivity"></activity>
-        <activity android:name=".ListActivity"></activity>
+        <activity android:name=".ShoppingListMemberActivity" />
+        <activity android:name=".ListActivity" />
+        <activity android:name=".SignUpActivity" />
+        <activity android:name=".CircleTransform" />
     </application>
 
 </manifest>

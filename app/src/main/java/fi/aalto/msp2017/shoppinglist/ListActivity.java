@@ -1,5 +1,6 @@
 package fi.aalto.msp2017.shoppinglist;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
@@ -7,8 +8,15 @@ import android.support.v7.widget.RecyclerView;
 import android.text.Editable;
 import android.text.TextWatcher;
 import android.util.Log;
+import android.view.Menu;
+import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.widget.TextView;
+import android.widget.Toast;
 
+import com.facebook.FacebookSdk;
+import com.facebook.login.LoginManager;
+import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -30,6 +38,7 @@ public class ListActivity extends AppCompatActivity {
     protected static List<ShoppingList> listItems = new ArrayList<>();
     private TextView searchTxt;
     protected static final String LOG_TAG = "TabFragment 1";
+    FirebaseAuth mAuth;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -59,7 +68,6 @@ public class ListActivity extends AppCompatActivity {
             }
         });
 
-
     }
 
     private void PopulateGVInList(){
@@ -87,6 +95,36 @@ public class ListActivity extends AppCompatActivity {
             }
         });
         rv.setAdapter(rvadapter);
+    }
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        MenuInflater inflater = getMenuInflater();
+        inflater.inflate(R.menu.main, menu);
+        return true;
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        int id = item.getItemId();
+
+        // menu items
+        switch (id) {
+            case R.id.action_profile:
+                Intent intent1 = new Intent(ListActivity.this, AccountActivity.class);
+                startActivity(intent1);
+                break;
+            case R.id.action_logout:
+                // sign out
+                mAuth= FirebaseAuth.getInstance();
+                mAuth.signOut();
+                LoginManager.getInstance().logOut();
+                Intent intent = new Intent(ListActivity.this, MainActivity.class);
+                Toast.makeText(this, "Logged out successfully", Toast.LENGTH_SHORT).show();
+                startActivity(intent);
+                break;
+        }
+        return super.onOptionsItemSelected(item);
     }
 }
 
