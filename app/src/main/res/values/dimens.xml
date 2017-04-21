@@ -6,4 +6,5 @@
     <dimen name="column_width">100dp</dimen>
     <dimen name="list_item_height">200dp</dimen>
     <dimen name="grid_item_height">100dp</dimen>
+    <dimen name="button_width">250dp</dimen>
 </resources>
