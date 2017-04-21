@@ -133,6 +133,7 @@
     <orderEntry type="library" exported="" name="firebase-database-connection-10.0.1" level="project" />
     <orderEntry type="library" exported="" name="play-services-auth-10.0.1" level="project" />
     <orderEntry type="library" exported="" name="constraint-layout-1.0.0-alpha9" level="project" />
+    <orderEntry type="library" exported="" name="glide-3.7.0" level="project" />
     <orderEntry type="library" exported="" scope="TEST" name="jsr305-2.0.1" level="project" />
     <orderEntry type="library" exported="" name="firebase-iid-10.0.1" level="project" />
     <orderEntry type="library" exported="" name="support-annotations-25.0.0" level="project" />

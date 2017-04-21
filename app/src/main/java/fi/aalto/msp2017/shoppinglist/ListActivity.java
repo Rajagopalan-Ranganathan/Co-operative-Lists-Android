@@ -9,6 +9,7 @@ import android.text.TextWatcher;
 import android.util.Log;
 import android.widget.TextView;
 
+import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -29,7 +30,7 @@ public class ListActivity extends AppCompatActivity {
     final FirebaseDatabase database = FirebaseDatabase.getInstance();
     protected static List<ShoppingList> listItems = new ArrayList<>();
     private TextView searchTxt;
-    protected static final String LOG_TAG = "TabFragment 1";
+    protected static final String LOG_TAG = "LISTACTIVITY";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -68,16 +69,17 @@ public class ListActivity extends AppCompatActivity {
         final String searchtext = searchTxt.getText().toString();
         Log.d(LOG_TAG, "SearchText: "+searchtext);
         shoppingListRef = database.getReference(getString(R.string.FBDB_SHOPPINGLIST));
-
-        shoppingListRef.addValueEventListener(new ValueEventListener() {
+        Log.d(LOG_TAG,"USER:"+FirebaseAuth.getInstance().getCurrentUser().getUid());
+//        child("members/"+FirebaseAuth.getInstance().getCurrentUser().getUid())
+        shoppingListRef.orderByChild("members/"+FirebaseAuth.getInstance().getCurrentUser().getUid()+"/email").equalTo("s@s.com").addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
                 listItems.clear();
                 for (DataSnapshot snapshot : dataSnapshot.getChildren()) {
+                    Log.d(LOG_TAG,snapshot.getValue().toString());
                     ShoppingList item = snapshot.getValue(ShoppingList.class);
                     if(item.getSearchResult(searchtext)) {
                         listItems.add(item);
-
                     }
                 }
                 rvadapter.notifyDataSetChanged();

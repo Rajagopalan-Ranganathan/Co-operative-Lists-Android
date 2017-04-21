@@ -86,7 +86,7 @@ public class ShoppingListMemberActivity extends AppCompatActivity {
                             for (DataSnapshot ds : dataSnapshot.getChildren()) {
                                 User member = ds.getValue(User.class);
                                 shoppingListMemberRef =database.getReference(getString(R.string.FBDB_SHOPPINGLIST)).child(listId).child("members");
-                                shoppingListMemberRef.push().setValue(member);
+                                shoppingListMemberRef.child(ds.getKey().toString()).setValue(member);
                                 Log.d(LOG_TAG, ds.getValue().toString());
                             }
                             Log.d(LOG_TAG,dataSnapshot.getKey().toString());
