@@ -12,7 +12,7 @@
         android:id="@+id/sl_search"
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
-        android:hint="Search item"
+        android:hint="Search list"
         android:layout_alignParentTop="true"
         android:inputType="text" />
     <android.support.v7.widget.RecyclerView
