@@ -12,6 +12,7 @@ import android.view.View;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.facebook.login.LoginManager;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
@@ -106,12 +107,10 @@ public class ShoppingListMemberActivity extends AppCompatActivity {
 
                 });
 
-
-
     }
 
     private void PopulateMembers() {
-        rvadapter = new MembersAdapterRV(this, memberItems);
+        rvadapter = new MembersAdapterRV(this, memberItems, listId);
         shoppingListMemberRef =database.getReference(getString(R.string.FBDB_SHOPPINGLIST)).child(listId).child("members");
 
         shoppingListMemberRef.addValueEventListener(new ValueEventListener() {
@@ -140,7 +139,12 @@ public class ShoppingListMemberActivity extends AppCompatActivity {
     public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()) {
             case R.id.action_logout:
-                FirebaseAuth.getInstance().signOut();
+                try {
+                    LoginManager.getInstance().logOut();
+                    FirebaseAuth.getInstance().signOut();
+
+                }
+                catch(Exception ex){}
                 Intent mainintent = new Intent(ShoppingListMemberActivity.this, MainActivity.class);
                 mainintent.setFlags(mainintent.getFlags());
                 startActivity(mainintent);

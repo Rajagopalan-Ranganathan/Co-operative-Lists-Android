@@ -12,6 +12,7 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.TextView;
 
+import com.facebook.login.LoginManager;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
@@ -110,7 +111,12 @@ public class ListActivity extends AppCompatActivity {
     public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()) {
             case R.id.action_logout:
-                FirebaseAuth.getInstance().signOut();
+                try {
+                    LoginManager.getInstance().logOut();
+                    FirebaseAuth.getInstance().signOut();
+
+                }
+                catch(Exception ex){}
                 Intent mainintent = new Intent(ListActivity.this, MainActivity.class);
                 mainintent.setFlags(mainintent.getFlags());
                 startActivity(mainintent);

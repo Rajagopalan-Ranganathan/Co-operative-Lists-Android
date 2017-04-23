@@ -8,6 +8,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.view.Menu;
 import android.view.MenuItem;
 
+import com.facebook.login.LoginManager;
 import com.google.firebase.auth.FirebaseAuth;
 
 import fi.aalto.msp2017.shoppinglist.adapters.PagerAdapter;
@@ -73,7 +74,12 @@ public class ShoppingListActivityTab extends AppCompatActivity {
                 startActivity(intent);
                 return true;
             case R.id.action_logout:
-                FirebaseAuth.getInstance().signOut();
+                try {
+                LoginManager.getInstance().logOut();
+                    FirebaseAuth.getInstance().signOut();
+
+                }
+                catch(Exception ex){}
                 Intent mainintent = new Intent(ShoppingListActivityTab.this, MainActivity.class);
                 mainintent.setFlags(mainintent.getFlags());
                 startActivity(mainintent);

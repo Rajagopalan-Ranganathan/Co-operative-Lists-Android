@@ -48,12 +48,13 @@ public class MembersAdapterRV extends RecyclerView.Adapter<MembersAdapterRV.List
         }
     }
     private static final String LOG_TAG = ListItemAdapter.class.getSimpleName();
-    final String listId = "-KhhVOK1epo5xzo_E4vY";
+    String listId;
 
     public MembersAdapterRV(Context context,
-                            List<User> memberItems) {
+                            List<User> memberItems, String listId) {
         this.context = context;
         this.memberItems = memberItems;
+        this.listId = listId;
     }
 
     @Override
