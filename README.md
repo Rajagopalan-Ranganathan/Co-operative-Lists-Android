@@ -74,9 +74,9 @@ Sunil Kumar Mohanty
     User can assign to self by clicking on the "Assign to me" button
 
 
-  ### Members details screen
+### Members details screen
 
-    * The screen shows the list of members belonging to the list
-    * User can be added by typing the email id of the user and pressing the "ADD" button
-    * Member can be removed by long click on the member
-    * Owner cannot be removed
+  * The screen shows the list of members belonging to the list
+  * User can be added by typing the email id of the user and pressing the "ADD" button
+  * Member can be removed by long click on the member
+  * Owner cannot be removed
