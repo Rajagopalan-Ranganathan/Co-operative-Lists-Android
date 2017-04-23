@@ -5,6 +5,9 @@
     android:layout_height="match_parent"
     android:orientation="vertical"
     tools:context="fi.aalto.msp2017.shoppinglist.ListActivity">
+    <include
+        android:id="@+id/toolbar"
+        layout="@layout/activity_toolbar_app"/>
     <EditText
         android:id="@+id/sl_search"
         android:layout_width="fill_parent"

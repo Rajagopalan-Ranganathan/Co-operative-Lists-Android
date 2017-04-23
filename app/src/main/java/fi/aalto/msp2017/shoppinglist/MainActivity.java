@@ -268,7 +268,7 @@ public class MainActivity extends AppCompatActivity {
     // GOOGLE Sign In integration
     private void firebaseAuthWithGoogle(GoogleSignInAccount account) {
 
-        AuthCredential credential = GoogleAuthProvider.getCredential(account.getIdToken(), null);
+        final AuthCredential credential = GoogleAuthProvider.getCredential(account.getIdToken(), null);
         mAuth.signInWithCredential(credential)
                 .addOnCompleteListener(this, new OnCompleteListener<AuthResult>() {
                     @Override
@@ -282,8 +282,7 @@ public class MainActivity extends AppCompatActivity {
                         DatabaseReference currentUserDb = mDatabase.child(userId);
                         currentUserDb.child("name").setValue(username);
                         currentUserDb.child("imageUrl").setValue(imageUrl);
-
-
+                        currentUserDb.child("email").setValue(mAuth.getCurrentUser().getEmail());
 
                         mProgress.dismiss();
                         Toast.makeText(MainActivity.this, "Login successful", Toast.LENGTH_SHORT).show();
@@ -327,6 +326,7 @@ public class MainActivity extends AppCompatActivity {
                         DatabaseReference currentUserDb = mDatabase.child(userId);
                         currentUserDb.child("name").setValue(username);
                         currentUserDb.child("imageUrl").setValue(imageUrl);
+                        currentUserDb.child("email").setValue(mAuth.getCurrentUser().getEmail());
 
 
 

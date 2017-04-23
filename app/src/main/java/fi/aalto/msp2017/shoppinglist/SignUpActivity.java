@@ -73,6 +73,9 @@ public class SignUpActivity extends AppCompatActivity {
                         String userId = mAuth.getCurrentUser().getUid();
                         DatabaseReference currentUserDb = mDatabase.child(userId);
                         currentUserDb.child("name").setValue(firstnameAuth + " " + lastnameAuth);
+                        currentUserDb.child("imageUrl").setValue("");
+                        currentUserDb.child("email").setValue(mAuth.getCurrentUser().getEmail());
+
                         FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
 
                         user.sendEmailVerification()
@@ -84,6 +87,7 @@ public class SignUpActivity extends AppCompatActivity {
                                         }
                                     }
                                 });
+
                         Toast.makeText(SignUpActivity.this, "Registration successful, please verify your email", Toast.LENGTH_SHORT).show();
                         Intent intent = new Intent(SignUpActivity.this, MainActivity.class);
                         intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
