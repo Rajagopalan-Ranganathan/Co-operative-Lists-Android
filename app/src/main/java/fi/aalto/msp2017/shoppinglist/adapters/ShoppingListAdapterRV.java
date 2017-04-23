@@ -83,7 +83,7 @@ public class ShoppingListAdapterRV extends RecyclerView.Adapter<ShoppingListAdap
             @Override
             public boolean onLongClick(View view) {
                 new AlertDialog.Builder(context)
-                        .setTitle("Title")
+                        .setTitle("Delete List")
                         .setMessage("Do you really want to delete the shopping list?")
                         .setIcon(android.R.drawable.ic_dialog_alert)
                         .setPositiveButton(android.R.string.yes, new DialogInterface.OnClickListener() {
