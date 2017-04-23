@@ -83,7 +83,7 @@ public class MasterItem implements IItem {
     public void SaveToDB()
     {
         masterItemRef = database.getReference("masteritems");
-        String key = masterItemRef.push().getKey();
+        String key = selfRef.child("items").push().getKey();
         this.setItemKey(key);
         selfRef = database.getReference("users").child(FirebaseAuth.getInstance().getCurrentUser().getUid());
         selfRef.child("items").child(key).setValue(this);

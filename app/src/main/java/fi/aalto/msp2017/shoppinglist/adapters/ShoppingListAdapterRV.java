@@ -1,21 +1,31 @@
 package fi.aalto.msp2017.shoppinglist.adapters;
 
 import android.content.Context;
+import android.content.Intent;
 import android.support.v7.widget.CardView;
 import android.support.v7.widget.RecyclerView;
+import android.text.TextUtils;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 
 import java.util.List;
 
 import fi.aalto.msp2017.shoppinglist.R;
+import fi.aalto.msp2017.shoppinglist.ShoppingListActivityTab;
 import fi.aalto.msp2017.shoppinglist.models.ShoppingList;
+import fi.aalto.msp2017.shoppinglist.models.User;
 
 /**
  * Created by raj on 18/4/17.
@@ -25,7 +35,7 @@ import fi.aalto.msp2017.shoppinglist.models.ShoppingList;
 public class ShoppingListAdapterRV extends RecyclerView.Adapter<ShoppingListAdapterRV.ListHolder> {
     private Context context;
     private List<ShoppingList> listItems;
-    DatabaseReference listItemRef;
+    DatabaseReference shoppingListRef;
     final FirebaseDatabase database = FirebaseDatabase.getInstance();
     static class ListHolder extends RecyclerView.ViewHolder {
         ImageView thumbnail;
@@ -70,52 +80,74 @@ public class ShoppingListAdapterRV extends RecyclerView.Adapter<ShoppingListAdap
         viewHolder.cv.setOnLongClickListener(new View.OnLongClickListener() {
             @Override
             public boolean onLongClick(View view) {
-//                if(type.equals("INLIST")) {
-                    ShoppingList selectedItem = (ShoppingList) listItemEntry;
-//                    Log.d(LOG_TAG, "Deleted Item : " + selectedItem.getListName());
-//                    listItemRef = database.getReference("shoppinglist").child(listId).child("items");
-//                    listItemRef.orderByChild("itemKey").equalTo(selectedItem.getItemKey()).addListenerForSingleValueEvent(
-//                            new ValueEventListener() {
-//                                @Override
-//                                public void onDataChange(DataSnapshot dataSnapshot) {
-//                                    for (DataSnapshot ds : dataSnapshot.getChildren()) {
-//                                        ds.getRef().setValue(null);
-//                                    }
-//                                }
-//
-//                                @Override
-//                                public void onCancelled(DatabaseError databaseError) {
-//                                    Log.w("TodoApp", "getUser:onCancelled", databaseError.toException());
-//                                }
-//
-//                            });
-//                }
+                ShoppingList selectedItem = (ShoppingList) listItemEntry;
+                Log.d(LOG_TAG, "Deleted Item : " + selectedItem.getListName());
+                if(selectedItem.getOwner().equals(FirebaseAuth.getInstance().getCurrentUser().getUid())) {
+                    DatabaseReference listRef = database.getReference("shoppinglist").child(selectedItem.getListID());
+                    listRef.setValue(null);
+                }
+                else {
+                    Log.d(LOG_TAG, "Cannot delete list : " + selectedItem.getListName());
+                    Toast.makeText(context,"Only owner can delete the shopping list", Toast.LENGTH_LONG).show();
+                }
                 return true;
             }
         });
-//        viewHolder.cv.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View v) {
-//                if(type.equals("NOTINLIST")) {
-//                    MasterItem selectedItem = (MasterItem) listItemEntry;
-//                    if(TextUtils.isEmpty(selectedItem.getItemKey())) {
-//                        selectedItem.SaveToDB();
-//                    }
-//                    ListItem li = new ListItem(selectedItem.getItemName(), null, selectedItem.getItemKey());
-//                    li.SaveToDB(listId);
-//                    listItems.remove(selectedItem);
-//                }
-//                else if(type.equals("INLIST")) {
-//                    Intent intent = new Intent(context, ListItemDetailsActivity.class);
-//                    ListItem li = (ListItem)listItemEntry;
-//                    intent.putExtra("LISTITEM", li.getItemKey());
-//                    intent.putExtra("LISTID", listId);
-//                    context.startActivity(intent);
-//                }
-//            }});
+        viewHolder.cv.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                ShoppingList selectedItem = (ShoppingList) listItemEntry;
+                if(TextUtils.isEmpty(selectedItem.getListID())) {
+                    DatabaseReference listRef = database.getReference("shoppinglist");
+                    String listID = listRef.push().getKey();
+                    selectedItem.setListID(listID);
+                    listRef.child(listID).setValue(selectedItem);
+                    AddUser(listID, selectedItem.getOwner());
+                }
+                Intent listItemIntent = new     Intent(context, ShoppingListActivityTab.class);
+                listItemIntent.putExtra("LISTID", selectedItem.getListID());
+                Log.d(LOG_TAG, selectedItem.getListID()+":"+selectedItem.getOwner());
+                listItemIntent.putExtra("OWNERID", selectedItem.getOwner());
+                context.startActivity(listItemIntent);
+                }});
     }
+
     @Override
     public int getItemCount() {
         return listItems.size();
     }
+
+    private void AddUser(String listID, final String ownerID) {
+
+        final DatabaseReference userRef = database.getReference("users").child(ownerID);
+        final DatabaseReference shoppingListMemberRef =database.getReference("shoppinglist").child(listID).child("members");
+
+        userRef.addListenerForSingleValueEvent(
+                new ValueEventListener() {
+                    @Override
+                    public void onDataChange(DataSnapshot dataSnapshot) {
+                        if( dataSnapshot.getValue() == null) {
+                            Log.d(LOG_TAG,"User not available");
+                        }
+                        else {
+
+                                User member = dataSnapshot.getValue(User.class);
+                                shoppingListMemberRef.child(ownerID).setValue(member);
+                                Log.d(LOG_TAG, dataSnapshot.getValue().toString());
+
+                            Log.d(LOG_TAG,dataSnapshot.getKey().toString());
+                        }
+                    }
+
+                    @Override
+                    public void onCancelled(DatabaseError databaseError) {
+                        Log.w("TodoApp", "getUser:onCancelled", databaseError.toException());
+                    }
+
+                });
+
+
+
+    }
+
 }

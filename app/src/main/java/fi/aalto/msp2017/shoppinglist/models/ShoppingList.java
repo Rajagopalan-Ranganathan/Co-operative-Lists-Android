@@ -1,6 +1,7 @@
 package fi.aalto.msp2017.shoppinglist.models;
 
 import com.firebase.client.ServerValue;
+import com.google.firebase.database.Exclude;
 
 import java.util.HashMap;
 
@@ -14,6 +15,8 @@ public class    ShoppingList {
     private String owner;
     private HashMap<String, Object> timestampCreated;
 
+
+    private String listID;
     public ShoppingList() {
 
     }
@@ -53,5 +56,13 @@ public class    ShoppingList {
     public boolean getSearchResult(String searchtext) {
         return listName.toLowerCase().contains(searchtext.toLowerCase());
 
+    }
+    @Exclude
+    public String getListID() {
+        return listID;
+    }
+
+    public void setListID(String listID) {
+        this.listID = listID;
     }
 }

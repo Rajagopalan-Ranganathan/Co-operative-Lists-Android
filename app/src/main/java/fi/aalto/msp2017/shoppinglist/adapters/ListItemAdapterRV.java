@@ -11,7 +11,9 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
+import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -35,6 +37,7 @@ public class ListItemAdapterRV extends RecyclerView.Adapter<ListItemAdapterRV.Li
     private List<IItem> listItems;
     DatabaseReference listItemRef;
     final FirebaseDatabase database = FirebaseDatabase.getInstance();
+    String listId;
     static class ListItemHolder extends RecyclerView.ViewHolder {
         ImageView thumbnail;
         TextView text;
@@ -54,11 +57,14 @@ public class ListItemAdapterRV extends RecyclerView.Adapter<ListItemAdapterRV.Li
     }
     private static final String LOG_TAG = ListItemAdapter.class.getSimpleName();
     String type;
+    String ownerId;
     public ListItemAdapterRV(Context context,
-                           List<IItem> listItems, String type) {
+                             List<IItem> listItems, String type, String listID, String ownerId) {
         this.context = context;
         this.listItems = listItems;
         this.type = type;
+        this.listId = listID;
+        this.ownerId = ownerId;
     }
 
     @Override
@@ -76,7 +82,7 @@ public class ListItemAdapterRV extends RecyclerView.Adapter<ListItemAdapterRV.Li
     @Override
     public void onBindViewHolder(final ListItemHolder viewHolder, final int i) {
         final IItem listItemEntry = listItems.get(i);
-        final String listId = "-KhhVOK1epo5xzo_E4vY";
+
         viewHolder.thumbnail.setImageResource(context.getResources().getIdentifier(listItemEntry.getImageName(), "drawable", context.getPackageName()));
         viewHolder.text.setText(listItemEntry.getItemName());
         viewHolder.txtDetails.setText(listItemEntry.GetMoreDetails());
@@ -84,24 +90,29 @@ public class ListItemAdapterRV extends RecyclerView.Adapter<ListItemAdapterRV.Li
             @Override
             public boolean onLongClick(View view) {
                if(type.equals("INLIST")) {
-                   ListItem selectedItem = (ListItem) listItemEntry;
-                   Log.d(LOG_TAG, "Deleted Item : " + selectedItem.getItemKey());
-                   listItemRef = database.getReference("shoppinglist").child(listId).child("items");
-                   listItemRef.orderByChild("itemKey").equalTo(selectedItem.getItemKey()).addListenerForSingleValueEvent(
-                           new ValueEventListener() {
-                               @Override
-                               public void onDataChange(DataSnapshot dataSnapshot) {
-                                   for (DataSnapshot ds : dataSnapshot.getChildren()) {
-                                       ds.getRef().setValue(null);
+                   if(ownerId.equals(FirebaseAuth.getInstance().getCurrentUser().getUid())) {
+                       ListItem selectedItem = (ListItem) listItemEntry;
+                       Log.d(LOG_TAG, "Deleted Item : " + selectedItem.getItemKey());
+                       listItemRef = database.getReference("shoppinglist").child(listId).child("items");
+                       listItemRef.orderByChild("itemKey").equalTo(selectedItem.getItemKey()).addListenerForSingleValueEvent(
+                               new ValueEventListener() {
+                                   @Override
+                                   public void onDataChange(DataSnapshot dataSnapshot) {
+                                       for (DataSnapshot ds : dataSnapshot.getChildren()) {
+                                           ds.getRef().setValue(null);
+                                       }
                                    }
-                               }
 
-                               @Override
-                               public void onCancelled(DatabaseError databaseError) {
-                                   Log.w("TodoApp", "getUser:onCancelled", databaseError.toException());
-                               }
+                                   @Override
+                                   public void onCancelled(DatabaseError databaseError) {
+                                       Log.w("TodoApp", "getUser:onCancelled", databaseError.toException());
+                                   }
 
-                           });
+                               });
+                   }
+                   else {
+                       Toast.makeText(context,"Only owner can remove items", Toast.LENGTH_SHORT).show();
+                   }
                }
                 return true;
             }

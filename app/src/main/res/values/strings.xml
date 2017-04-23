@@ -7,4 +7,7 @@
     <string name="FBDB_USERS">users</string>
     <string name="FBDB_SHOPPINGLIST">shoppinglist</string>
     <string name="FBDB_ITEMS">items</string>
+    <string name="logout">Logout</string>
+    <string name="members">Members</string>
+    <string name="account">Account</string>
 </resources>

@@ -6,7 +6,7 @@
     android:orientation="vertical"
     tools:context="fi.aalto.msp2017.shoppinglist.ListActivity">
     <EditText
-        android:id="@+id/slcv_search"
+        android:id="@+id/sl_search"
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
         android:hint="Search item"
@@ -16,7 +16,7 @@
         android:layout_height="match_parent"
         android:layout_width="match_parent"
         android:id="@+id/rv_shop_list"
-        android:layout_below="@id/slcv_search">
+        android:layout_below="@id/sl_search">
     </android.support.v7.widget.RecyclerView>
 
 

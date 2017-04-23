@@ -7,14 +7,9 @@ import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatActivity;
 import android.text.TextUtils;
 import android.util.Log;
-import android.view.Menu;
-import android.view.MenuInflater;
-import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
-import android.widget.ImageView;
-import android.widget.Switch;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -23,7 +18,6 @@ import com.facebook.CallbackManager;
 import com.facebook.FacebookCallback;
 import com.facebook.FacebookException;
 import com.facebook.FacebookSdk;
-import com.facebook.login.LoginManager;
 import com.facebook.login.LoginResult;
 import com.facebook.login.widget.LoginButton;
 import com.google.android.gms.auth.api.Auth;
@@ -153,6 +147,7 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onAuthStateChanged(@NonNull FirebaseAuth firebaseAuth) {
                 if(firebaseAuth.getCurrentUser() != null) {
+                    Log.wtf("User", firebaseAuth.getCurrentUser().getEmail());
                     Intent intent = new Intent(MainActivity.this, ListActivity.class);
                     startActivity(intent);
                 }
@@ -292,6 +287,7 @@ public class MainActivity extends AppCompatActivity {
 
                         mProgress.dismiss();
                         Toast.makeText(MainActivity.this, "Login successful", Toast.LENGTH_SHORT).show();
+                        Log.wtf("sometext", "login successful");
                         Intent intent = new Intent(MainActivity.this, ListActivity.class);
                         startActivity(intent);
                         // If sign in fails, display a message to the user. If sign in succeeds

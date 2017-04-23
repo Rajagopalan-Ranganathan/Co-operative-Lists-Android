@@ -1,5 +1,6 @@
 package fi.aalto.msp2017.shoppinglist;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v7.widget.LinearLayoutManager;
@@ -39,17 +40,23 @@ public class TabFragment2 extends Fragment {
     private List<IItem> notInlistItems = new ArrayList<>();
     private List<IItem> inListItems =  new ArrayList<>();
     private TextView searchTxt;
+    private String ownerId;
 
     DatabaseReference listItemRef;
     DatabaseReference selfRef;
 
     protected static final String LOG_TAG = "TabFragment 2";
-    final String listId = "-KhhVOK1epo5xzo_E4vY";
+    String listId;
 
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View v = inflater.inflate(R.layout.fragment_tab_fragment2, container, false);
+        Intent i = getActivity().getIntent();
+        Bundle extras = i.getExtras();
+
+        listId = extras.get("LISTID").toString();
+        ownerId = extras.get("OWNERID").toString();
         masterItemRef = database.getReference(getString(R.string.FBDB_MASTERITEMS));
         listItemRef = database.getReference(getString(R.string.FBDB_SHOPPINGLIST)).child(listId).child(getString(R.string.FBDB_ITEMS));
         selfRef = database.getReference(getString(R.string.FBDB_USERS)).child(FirebaseAuth.getInstance().getCurrentUser().getUid());
@@ -105,7 +112,7 @@ public class TabFragment2 extends Fragment {
 
     private void PopulateGVNotInList() {
         Log.d(LOG_TAG, "PopulateGVNotInList: ");
-        rvadapter = new ListItemAdapterRV(this.getContext(), notInlistItems,"NOTINLIST");
+        rvadapter = new ListItemAdapterRV(this.getContext(), notInlistItems,"NOTINLIST", listId, ownerId);
         final String searchtext = searchTxt.getText().toString();
         final List<IItem> myItems = new ArrayList<>();
 

@@ -1,5 +1,6 @@
 package fi.aalto.msp2017.shoppinglist;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
@@ -25,8 +26,8 @@ public class ShoppingListMemberActivity extends AppCompatActivity {
     DatabaseReference shoppingListMemberRef;
     final FirebaseDatabase database = FirebaseDatabase.getInstance();
     protected static List<User> memberItems = new ArrayList<>();
-    final String listId = "-KhhVOK1epo5xzo_E4vY";
-    protected static final String LOG_TAG = "TabFragment 1";
+    String listId;
+    protected static final String LOG_TAG = "Shopping List Member";
     private RecyclerView rv;
     MembersAdapterRV rvadapter;
     TextView tv_Email;
@@ -34,14 +35,16 @@ public class ShoppingListMemberActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_shopping_list_member);
+        Intent i = getIntent();
+        Bundle extras = i.getExtras();
+        listId = extras.get("LISTID").toString();
 
         rv = (RecyclerView) findViewById(R.id.rv_ShoppingListMembers);
         tv_Email = (TextView) findViewById(R.id.tv_members_add);
         LinearLayoutManager llm = new LinearLayoutManager(this);
         rv.setLayoutManager(llm);
         rv.setHasFixedSize(true);
-//        shoppingListMemberRef =database.getReference(getString(R.string.FBDB_SHOPPINGLIST)).child(listId).child("members");
-//        shoppingListMemberRef.push().setValue(new User("Sunil Kumar Mohanty", "sunilkumarmohanty@gmail.com","url"));
+
 
         PopulateMembers();
 

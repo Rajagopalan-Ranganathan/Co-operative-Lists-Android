@@ -7,6 +7,9 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".ShoppingListActivityTab">
+    <include
+        android:id="@+id/toolbar"
+        layout="@layout/activity_toolbar_app"/>
     <EditText
         android:id="@+id/search"
         android:layout_width="fill_parent"

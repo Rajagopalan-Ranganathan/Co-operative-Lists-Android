@@ -1,5 +1,6 @@
 package fi.aalto.msp2017.shoppinglist;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v7.widget.LinearLayoutManager;
@@ -38,12 +39,19 @@ public class TabFragment1 extends Fragment {
     private TextView searchTxt;
     DatabaseReference listItemRef;
     protected static final String LOG_TAG = "TabFragment 1";
-    final String listId = "-KhhVOK1epo5xzo_E4vY";
+    String listId = "";
+    private String ownerId;
 
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View v = inflater.inflate(R.layout.fragment_tab_fragment1, container, false);
+
+
+        Intent i = getActivity().getIntent();
+        Bundle extras = i.getExtras();
+        listId = extras.get("LISTID").toString();
+        ownerId = extras.get("OWNERID").toString();
         masterItemRef = database.getReference(getString(R.string.FBDB_MASTERITEMS));
         listItemRef = database.getReference(getString(R.string.FBDB_SHOPPINGLIST)).child(listId).child(getString(R.string.FBDB_ITEMS));
         searchTxt = (TextView)getActivity().findViewById(R.id.search);
@@ -75,7 +83,7 @@ public class TabFragment1 extends Fragment {
 
     private void PopulateGVInList(){
 
-        rvadapter = new ListItemAdapterRV(this.getContext(), inListItems,"INLIST");
+        rvadapter = new ListItemAdapterRV(this.getContext(), inListItems,"INLIST", listId, ownerId);
         final String searchtext = searchTxt.getText().toString();
         Log.d(LOG_TAG, "SearchText: "+searchtext);
         listItemRef.addValueEventListener(new ValueEventListener() {

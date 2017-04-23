@@ -30,10 +30,10 @@
             android:label="@string/title_activity_shopping_list"
             android:theme="@style/AppTheme.NoActionBar" />
         <activity android:name=".ShoppingListActivityHG" />
-        <activity android:name=".ShoppingListActivityTab" />
+        <activity android:name=".ShoppingListActivityTab" android:windowSoftInputMode="stateHidden"  />
         <activity android:name=".ListItemDetailsActivity" />
-        <activity android:name=".ShoppingListMemberActivity" />
-        <activity android:name=".ListActivity" />
+        <activity android:name=".ShoppingListMemberActivity" android:windowSoftInputMode="stateHidden"  />
+        <activity android:name=".ListActivity"  android:windowSoftInputMode="stateHidden" />
         <activity android:name=".SignUpActivity" />
         <activity android:name=".CircleTransform" />
     </application>

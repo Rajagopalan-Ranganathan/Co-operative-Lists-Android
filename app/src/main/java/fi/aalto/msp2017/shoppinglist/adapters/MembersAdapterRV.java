@@ -9,8 +9,10 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.bumptech.glide.Glide;
+import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -88,7 +90,13 @@ public class MembersAdapterRV extends RecyclerView.Adapter<MembersAdapterRV.List
                             @Override
                             public void onDataChange(DataSnapshot dataSnapshot) {
                                 for (DataSnapshot ds : dataSnapshot.getChildren()) {
-                                    ds.getRef().setValue(null);
+                                    if(ds.getKey().equals(FirebaseAuth.getInstance().getCurrentUser().getUid())) {
+                                        Toast.makeText(context, "Cannot remove owner", Toast.LENGTH_SHORT).show();
+                                        break;
+                                    }
+                                    else {
+                                        ds.getRef().setValue(null);
+                                    }
                                 }
                             }
 
