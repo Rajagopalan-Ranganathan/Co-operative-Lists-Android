@@ -18,7 +18,7 @@
         android:layout_width="100dp"
         android:layout_height="100dp"
         android:layout_centerHorizontal="true"
-        android:src="@drawable/coop"/>
+        android:src="@mipmap/ic_launcher"/>
 
     <Button
         android:id="@+id/btnSignIn"

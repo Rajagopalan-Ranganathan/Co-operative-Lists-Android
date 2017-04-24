@@ -12,11 +12,11 @@
     tools:context="fi.aalto.msp2017.shoppinglist.SignUpActivity">
 
     <ImageView
-        android:layout_width="100dp"
-        android:layout_height="100dp"
-        android:layout_centerHorizontal="true"
-        android:src="@drawable/coop"
-        android:id="@+id/imageView" />
+    android:layout_width="100dp"
+    android:layout_height="100dp"
+    android:layout_centerHorizontal="true"
+        android:src="@mipmap/ic_launcher"
+    android:id="@+id/imageView" />
 
     <LinearLayout
         android:id="@+id/layoutSignup"
