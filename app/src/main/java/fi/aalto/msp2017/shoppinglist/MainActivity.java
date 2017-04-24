@@ -72,8 +72,8 @@ public class MainActivity extends AppCompatActivity {
         login_password=(EditText) findViewById(R.id.etSignupPassword);
         reset=(TextView) findViewById(R.id.passwordReset);
         btnG=(SignInButton) findViewById(R.id.gButton);
-        TextView textView = (TextView) btnG.getChildAt(0);
-        textView.setText("Continue with Google");
+        btnG.setSize(SignInButton.SIZE_WIDE);
+        btnG.setColorScheme(0);
         LoginButton mFacebookSignInButton = (LoginButton) findViewById(R.id.fbButton);
         mFacebookSignInButton.setReadPermissions("email", "public_profile");
 

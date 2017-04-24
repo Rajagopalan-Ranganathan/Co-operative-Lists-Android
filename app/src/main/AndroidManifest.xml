@@ -35,7 +35,6 @@
         <activity android:name=".ShoppingListMemberActivity" android:windowSoftInputMode="stateHidden"  />
         <activity android:name=".ListActivity"  android:windowSoftInputMode="stateHidden" />
         <activity android:name=".SignUpActivity" />
-        <activity android:name=".CircleTransform" />
     </application>
 
 </manifest>
