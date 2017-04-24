@@ -2,11 +2,15 @@ package fi.aalto.msp2017.shoppinglist.adapters;
 
 import android.content.Context;
 import android.content.Intent;
+import android.graphics.Color;
 import android.support.v7.widget.CardView;
+import android.support.v7.widget.PopupMenu;
 import android.support.v7.widget.RecyclerView;
 import android.text.TextUtils;
 import android.util.Log;
 import android.view.LayoutInflater;
+import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
@@ -42,6 +46,7 @@ public class ListItemAdapterRV extends RecyclerView.Adapter<ListItemAdapterRV.Li
         ImageView thumbnail;
         TextView text;
         TextView txtDetails;
+        TextView txtStatus;
         CardView cv;
 
         public ListItemHolder(View itemView) {
@@ -51,9 +56,10 @@ public class ListItemAdapterRV extends RecyclerView.Adapter<ListItemAdapterRV.Li
             text = (TextView) itemView.findViewById(R.id.item_name);
             thumbnail = (ImageView) itemView.findViewById(R.id.icon);
             txtDetails = (TextView) itemView.findViewById(R.id.item_details);
-
+            txtStatus = (TextView) itemView.findViewById(R.id.item_status);
             cv = (CardView) itemView.findViewById(R.id.cv);
         }
+
     }
     private static final String LOG_TAG = ListItemAdapter.class.getSimpleName();
     String type;
@@ -86,33 +92,51 @@ public class ListItemAdapterRV extends RecyclerView.Adapter<ListItemAdapterRV.Li
         viewHolder.thumbnail.setImageResource(context.getResources().getIdentifier(listItemEntry.getImageName(), "drawable", context.getPackageName()));
         viewHolder.text.setText(listItemEntry.getItemName());
         viewHolder.txtDetails.setText(listItemEntry.GetMoreDetails());
+        viewHolder.txtStatus.setText(listItemEntry.getStatus());
+
+        Log.d(LOG_TAG, listItemEntry.getStatus());
+        if(listItemEntry.getStatus().equals("(Purchased)")) {
+            viewHolder.txtStatus.setTextColor(Color.parseColor("#8BC34A"));
+        }
+        else {
+            viewHolder.txtStatus.setTextColor(Color.parseColor("#ff0000"));
+        }
         viewHolder.cv.setOnLongClickListener(new View.OnLongClickListener() {
             @Override
             public boolean onLongClick(View view) {
                if(type.equals("INLIST")) {
-                   if(ownerId.equals(FirebaseAuth.getInstance().getCurrentUser().getUid())) {
-                       ListItem selectedItem = (ListItem) listItemEntry;
-                       Log.d(LOG_TAG, "Deleted Item : " + selectedItem.getItemKey());
-                       listItemRef = database.getReference("shoppinglist").child(listId).child("items");
-                       listItemRef.orderByChild("itemKey").equalTo(selectedItem.getItemKey()).addListenerForSingleValueEvent(
-                               new ValueEventListener() {
-                                   @Override
-                                   public void onDataChange(DataSnapshot dataSnapshot) {
-                                       for (DataSnapshot ds : dataSnapshot.getChildren()) {
-                                           ds.getRef().setValue(null);
-                                       }
-                                   }
 
-                                   @Override
-                                   public void onCancelled(DatabaseError databaseError) {
-                                       Log.w("TodoApp", "getUser:onCancelled", databaseError.toException());
-                                   }
+                   PopupMenu popup = new PopupMenu(context, view);
+                   MenuInflater inflater = popup.getMenuInflater();
+                   inflater.inflate(R.menu.item_menu, popup.getMenu());
+                   ListItem selectedItem = (ListItem) listItemEntry;
+                   popup.setOnMenuItemClickListener(new MyMenuItemClickListener(selectedItem));
+                   popup.show();
 
-                               });
-                   }
-                   else {
-                       Toast.makeText(context,"Only owner can remove items", Toast.LENGTH_SHORT).show();
-                   }
+
+                   //                   if(ownerId.equals(FirebaseAuth.getInstance().getCurrentUser().getUid())) {
+//                       ListItem selectedItem = (ListItem) listItemEntry;
+//                       Log.d(LOG_TAG, "Deleted Item : " + selectedItem.getItemKey());
+//                       listItemRef = database.getReference("shoppinglist").child(listId).child("items");
+//                       listItemRef.orderByChild("itemKey").equalTo(selectedItem.getItemKey()).addListenerForSingleValueEvent(
+//                               new ValueEventListener() {
+//                                   @Override
+//                                   public void onDataChange(DataSnapshot dataSnapshot) {
+//                                       for (DataSnapshot ds : dataSnapshot.getChildren()) {
+//                                           ds.getRef().setValue(null);
+//                                       }
+//                                   }
+//
+//                                   @Override
+//                                   public void onCancelled(DatabaseError databaseError) {
+//                                       Log.w("TodoApp", "getUser:onCancelled", databaseError.toException());
+//                                   }
+//
+//                               });
+//                   }
+//                   else {
+//                       Toast.makeText(context,"Only owner can remove items", Toast.LENGTH_SHORT).show();
+//                   }
                }
                 return true;
             }
@@ -141,5 +165,54 @@ public class ListItemAdapterRV extends RecyclerView.Adapter<ListItemAdapterRV.Li
     @Override
     public int getItemCount() {
         return listItems.size();
+    }
+    class MyMenuItemClickListener implements PopupMenu.OnMenuItemClickListener {
+        ListItem li ;
+
+        public MyMenuItemClickListener(ListItem li) {
+            this.li = li;
+        }
+
+        @Override
+        public boolean onMenuItemClick(MenuItem menuItem) {
+            switch (menuItem.getItemId()) {
+                case R.id.action_assigntome:
+                    listItemRef = database.getReference("shoppinglist").child(listId).child("items").child(li.getItemKey()).child("owner");
+                    DatabaseReference selfRef = database.getReference("users").child(FirebaseAuth.getInstance().getCurrentUser().getUid()).child("name");
+
+                    selfRef.addListenerForSingleValueEvent(
+                            new ValueEventListener() {
+                                @Override
+                                public void onDataChange(DataSnapshot dataSnapshot) {
+                                    Log.d(LOG_TAG,"o "+dataSnapshot.getValue().toString());
+                                    String name = dataSnapshot.getValue(String.class);
+                                    listItemRef.setValue(name);
+                                }
+
+                                @Override
+                                public void onCancelled(DatabaseError databaseError) {
+                                    Log.w("TodoApp", "getUser:onCancelled", databaseError.toException());
+                                }
+
+                            });
+                    return true;
+                case R.id.action_purchase:
+                    DatabaseReference itemOwner = database.getReference("shoppinglist").child(listId).child("items").child(li.getItemKey()).child("status");
+                    itemOwner.setValue("(Purchased)");
+                    Toast.makeText(context, "Play next", Toast.LENGTH_SHORT).show();
+                    return true;
+                case R.id.action_delete:
+                    if(ownerId.equals(FirebaseAuth.getInstance().getCurrentUser().getUid())) {
+                       Log.d(LOG_TAG, "Deleted Item : " + li.getItemKey());
+                       listItemRef = database.getReference("shoppinglist").child(listId).child("items").child(li.getItemKey());
+                       listItemRef.setValue(null);
+                   }
+                   else {
+                       Toast.makeText(context,"Only owner can remove items", Toast.LENGTH_SHORT).show();
+                   }
+                    return true;
+            }
+            return false;
+        }
     }
 }

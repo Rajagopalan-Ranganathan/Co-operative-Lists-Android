@@ -34,7 +34,7 @@ public class ListItemDetailsActivity extends AppCompatActivity {
     private String listID;
     private String itemMasterKey;
     private String itemKey;
-    private Button btnAssignToMe;
+    private Button btnAssignToMe, btnPurchase;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -54,7 +54,6 @@ public class ListItemDetailsActivity extends AppCompatActivity {
             public void afterTextChanged(Editable arg0) {
                 Integer quantity = 1;
                 try{
-
                     quantity = Integer.parseInt(et_Quantity.getText().toString().trim());
                     DatabaseReference itemOwner = database.getReference("shoppinglist").child(listID).child("items").child(itemKey).child("quantity");
                     itemOwner.setValue(quantity);
@@ -75,7 +74,25 @@ public class ListItemDetailsActivity extends AppCompatActivity {
                                       int arg3) {
             }
         });
+        findViewById(R.id.lid_Purchase).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                String status ="(Not purchased)";
+                btnPurchase = (Button)findViewById(R.id.lid_Purchase);
+                Log.d(LOG_TAG,btnPurchase.getText().toString().toLowerCase());
+                if(btnPurchase.getText().toString().toLowerCase().equals("mark as purchased")) {
+                status = "(Purchased)";
+            }
+                final DatabaseReference itemOwner = database.getReference("shoppinglist").child(listID).child("items").child(itemKey).child("status");
+                itemOwner.setValue(status);
 
+                if (status.equals("(Purchased)")) {
+                    btnPurchase.setText("Mark as not Purchased");
+                }
+                else {
+                    btnPurchase.setText("Mark as Purchased");
+                }
+            }});
         findViewById(R.id.lid_AssignToMe).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -97,8 +114,6 @@ public class ListItemDetailsActivity extends AppCompatActivity {
                             }
 
                         });
-
-                itemOwner.setValue(FirebaseAuth.getInstance().getCurrentUser().getDisplayName());
             }
         });
 
@@ -109,6 +124,7 @@ public class ListItemDetailsActivity extends AppCompatActivity {
         tv_ItemName = (TextView)findViewById(R.id.lid_header);
         et_Quantity = (EditText)findViewById(R.id.lid_quantity);
         tv_Owner = (TextView)findViewById(R.id.lid_owner);
+        btnPurchase = (Button)findViewById(R.id.lid_Purchase);
         listItemRef.orderByChild("itemKey").equalTo(itemMasterKey).addListenerForSingleValueEvent(
                 new ValueEventListener() {
                     @Override
@@ -117,9 +133,11 @@ public class ListItemDetailsActivity extends AppCompatActivity {
                             ListItem item = ds.getValue(ListItem.class);
                             tv_ItemName.setText(item.getItemName());
                             itemKey = ds.getKey();
-//                            et_Quantity.setText();
                           et_Quantity.setText(item.getQuantity().toString(), TextView.BufferType.EDITABLE);
                             tv_Owner.setText(item.getOwner());
+                            if (item.getStatus().equals("(Purchased)")) {
+                                btnPurchase.setText("Mark as not Purchased");
+                            }
                         }
                     }
 

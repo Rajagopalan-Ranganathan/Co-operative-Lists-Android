@@ -1,6 +1,5 @@
 package fi.aalto.msp2017.shoppinglist;
 
-import android.app.ProgressDialog;
 import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
@@ -208,7 +207,9 @@ public class MainActivity extends AppCompatActivity {
                     if (task.isSuccessful()) {
                         dialog.dismiss();
                         FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
-                        if (user.isEmailVerified()) {
+                        if(true)
+                        //if (user.isEmailVerified())
+                        {
                             Intent intent = new Intent(MainActivity.this, ListActivity.class);
                             Toast.makeText(MainActivity.this, "Login successful", Toast.LENGTH_SHORT).show();
                             intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);

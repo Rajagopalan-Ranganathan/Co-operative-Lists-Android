@@ -9,4 +9,5 @@ public interface IItem {
     public String getImageName();
     public String getItemKey();
     public String GetMoreDetails();
+    public String getStatus();
 }

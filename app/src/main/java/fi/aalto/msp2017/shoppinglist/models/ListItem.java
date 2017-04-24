@@ -20,6 +20,7 @@ public class ListItem implements IItem {
     private Integer quantity;
     private HashMap<String, Object> timestampCreated;
     private String itemKey;
+    private String status = "(Not Purchased)";
     DatabaseReference masterItemRef;
     DatabaseReference listItemRef;
     DatabaseReference selfRef;
@@ -101,14 +102,22 @@ public class ListItem implements IItem {
 
     public void SaveToDB(String listID)
     {
-        listItemRef = database.getReference("shoppinglist").child(listID).child("items");
-        listItemRef.push().setValue(this);
+        listItemRef = database.getReference("shoppinglist").child(listID).child("items").child(getItemKey());
+        listItemRef.setValue(this);
 
     }
 
-    public void Delete(String listID)
-    {
-        listItemRef = database.getReference("shoppinglist").child(listID).child("items");
-        listItemRef.push().setValue(this);
+
+    public String getStatus() {
+        if(TextUtils.isEmpty(status)) {
+            return "(Not Purchased)";
+        }
+        return status;
     }
+
+    public void setStatus(String status) {
+        this.status = status;
+    }
+
+
 }

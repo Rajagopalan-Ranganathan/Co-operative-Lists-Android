@@ -1,6 +1,7 @@
 package fi.aalto.msp2017.shoppinglist;
 
 import android.content.Intent;
+import android.location.Location;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v7.widget.LinearLayoutManager;
@@ -13,6 +14,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
+import com.google.android.gms.common.api.GoogleApiClient;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -35,6 +37,9 @@ public class TabFragment1 extends Fragment {
     ListItemAdapterRV rvadapter;
     DatabaseReference masterItemRef;
     final FirebaseDatabase database = FirebaseDatabase.getInstance();
+    protected GoogleApiClient mGoogleApiClient;
+    protected Location mLastLocation;
+
     protected static List<IItem> inListItems = new ArrayList<>();
     private TextView searchTxt;
     DatabaseReference listItemRef;

@@ -21,7 +21,7 @@ public class MasterItem implements IItem {
     DatabaseReference masterItemRef ;
     DatabaseReference listItemRef;
     DatabaseReference selfRef;
-    final FirebaseDatabase database = FirebaseDatabase.getInstance();
+    FirebaseDatabase database = FirebaseDatabase.getInstance();
 
     public MasterItem(){}
 
@@ -80,9 +80,15 @@ public class MasterItem implements IItem {
     {
         return "";
     }
+    public String getStatus()
+    {
+        return "";
+    }
+
     public void SaveToDB()
     {
         masterItemRef = database.getReference("masteritems");
+        selfRef = database.getReference("users").child(FirebaseAuth.getInstance().getCurrentUser().getUid());
         String key = selfRef.child("items").push().getKey();
         this.setItemKey(key);
         selfRef = database.getReference("users").child(FirebaseAuth.getInstance().getCurrentUser().getUid());
