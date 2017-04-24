@@ -6,16 +6,27 @@ Frontend - Android
 Backend - Firebase
 
 ## Developers
-Ivan Shabunin
-Max Reuter
-Rajagopalan Ranganathan
+Ivan Shabunin,
+Max Reuter,
+Rajagopalan Ranganathan,
 Sunil Kumar Mohanty
-
 
 
 ## Functionality
 
+* User registration
+* Password reset
+* Password update
+* Email verification
+
+
 ### User Login
+
+The user is able to sign in with:
+* Facebook
+* Google
+* credentials which the user used in application registration
+
 
 ### Shopping list
 
