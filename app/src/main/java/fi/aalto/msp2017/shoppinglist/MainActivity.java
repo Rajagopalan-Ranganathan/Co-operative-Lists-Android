@@ -2,6 +2,7 @@ package fi.aalto.msp2017.shoppinglist;
 
 import android.app.ProgressDialog;
 import android.content.Intent;
+import android.graphics.Color;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatActivity;
@@ -39,6 +40,9 @@ import com.google.firebase.auth.UserInfo;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 
+import cc.cloudist.acplibrary.ACProgressConstant;
+import cc.cloudist.acplibrary.ACProgressFlower;
+
 
 public class MainActivity extends AppCompatActivity {
 
@@ -48,7 +52,6 @@ public class MainActivity extends AppCompatActivity {
     DatabaseReference mDatabase;
     GoogleApiClient mGoogleApiClient;
     CallbackManager mCallbackManager;
-    ProgressDialog mProgress;
     Button btnSignup, btnSignin;
     SignInButton btnG;
     TextView reset;
@@ -118,8 +121,6 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onSuccess(LoginResult loginResult) {
                 handleFacebookAccessToken(loginResult.getAccessToken());
-                /*Intent intent = new Intent(MainActivity.this, ShoppingListActivityHG.class);
-                startActivity(intent);*/
             }
 
             @Override
@@ -135,21 +136,17 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
-        /*mFacebookSignInButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                LoginManager.getInstance()
-                        .logInWithReadPermissions(MainActivity.this, Arrays.asList("email", "public_profile"));
-            }
-        });*/
 
         mAuthListener = new FirebaseAuth.AuthStateListener() {
             @Override
             public void onAuthStateChanged(@NonNull FirebaseAuth firebaseAuth) {
-                if(firebaseAuth.getCurrentUser() != null) {
-                    Log.wtf("User", firebaseAuth.getCurrentUser().getEmail());
-                    Intent intent = new Intent(MainActivity.this, ListActivity.class);
-                    startActivity(intent);
+                FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
+                if (firebaseAuth.getCurrentUser() != null) {
+                    if (user.isEmailVerified()) {
+                        Log.wtf("User", firebaseAuth.getCurrentUser().getEmail());
+                        Intent intent = new Intent(MainActivity.this, ListActivity.class);
+                        startActivity(intent);
+                    }
                 }
             }
         };
@@ -158,7 +155,7 @@ public class MainActivity extends AppCompatActivity {
         btnG.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                mProgress = ProgressDialog.show(MainActivity.this, "Please wait...",null,true,true);
+
                 googleSignIn();
             }
         });
@@ -194,21 +191,22 @@ public class MainActivity extends AppCompatActivity {
 
         String email = login_email.getText().toString();
         String password = login_password.getText().toString();
-
-        /*email = "sunil@sunil.com";
-        password = "sunil.2013";*/
-
         if(TextUtils.isEmpty(email) || TextUtils.isEmpty(password)) {
             Toast.makeText(MainActivity.this, "Fill all the fields", Toast.LENGTH_SHORT).show();
 
         } else {
-            mProgress = ProgressDialog.show(MainActivity.this, "Please wait...",null,true,true);
+            final ACProgressFlower dialog = new ACProgressFlower.Builder(this)
+                    .direction(ACProgressConstant.DIRECT_CLOCKWISE)
+                    .themeColor(Color.WHITE)
+                    .text("Please wait...")
+                            .fadeColor(Color.DKGRAY).build();
+            dialog.show();
             mAuth.signInWithEmailAndPassword(email, password).addOnCompleteListener(new OnCompleteListener<AuthResult>() {
                 @Override
                 public void onComplete(@NonNull Task<AuthResult> task) {
 
                     if (task.isSuccessful()) {
-                        mProgress.dismiss();
+                        dialog.dismiss();
                         FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
                         if (user.isEmailVerified()) {
                             Intent intent = new Intent(MainActivity.this, ListActivity.class);
@@ -221,6 +219,7 @@ public class MainActivity extends AppCompatActivity {
                         }
 
                     } else {
+                        dialog.dismiss();
                         Toast.makeText(MainActivity.this, "Wrong email or password", Toast.LENGTH_SHORT).show();
                     }
                 }
@@ -268,6 +267,12 @@ public class MainActivity extends AppCompatActivity {
     // GOOGLE Sign In integration
     private void firebaseAuthWithGoogle(GoogleSignInAccount account) {
 
+        final ACProgressFlower mProgress = new ACProgressFlower.Builder(MainActivity.this)
+                .direction(ACProgressConstant.DIRECT_CLOCKWISE)
+                .themeColor(Color.WHITE)
+                .text("Please wait...")
+                .fadeColor(Color.DKGRAY).build();
+        mProgress.show();
         final AuthCredential credential = GoogleAuthProvider.getCredential(account.getIdToken(), null);
         mAuth.signInWithCredential(credential)
                 .addOnCompleteListener(this, new OnCompleteListener<AuthResult>() {

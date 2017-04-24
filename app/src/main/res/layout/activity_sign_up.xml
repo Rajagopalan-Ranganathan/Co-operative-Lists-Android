@@ -11,21 +11,20 @@
     android:background="#dbfdfa"
     tools:context="fi.aalto.msp2017.shoppinglist.SignUpActivity">
 
-    <TextView
-        android:id="@+id/logo"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+    <ImageView
+        android:layout_width="100dp"
+        android:layout_height="100dp"
         android:layout_centerHorizontal="true"
-        android:textColor="#000000"
-        android:text="LOGO" />
+        android:src="@drawable/coop"
+        android:id="@+id/imageView" />
 
     <LinearLayout
         android:id="@+id/layoutSignup"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_below="@id/logo"
-        android:layout_marginTop="70dp"
+        android:layout_marginTop="11dp"
         android:orientation="vertical"
+        android:layout_below="@+id/imageView"
         android:layout_centerHorizontal="true">
 
         <EditText

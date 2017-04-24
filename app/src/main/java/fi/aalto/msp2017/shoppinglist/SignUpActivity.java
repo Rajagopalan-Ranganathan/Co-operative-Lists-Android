@@ -2,6 +2,7 @@ package fi.aalto.msp2017.shoppinglist;
 
 import android.app.ProgressDialog;
 import android.content.Intent;
+import android.graphics.Color;
 import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -20,10 +21,12 @@ import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 
+import cc.cloudist.acplibrary.ACProgressConstant;
+import cc.cloudist.acplibrary.ACProgressFlower;
+
 public class SignUpActivity extends AppCompatActivity {
 
     EditText email, password, first_name, last_name;
-    ProgressDialog mProgress;
     FirebaseAuth mAuth;
     DatabaseReference mDatabase;
     Button btnSignUp;
@@ -64,7 +67,6 @@ public class SignUpActivity extends AppCompatActivity {
             Toast.makeText(SignUpActivity.this, "Fill all the fields", Toast.LENGTH_SHORT).show();
 
         } else {
-            mProgress = ProgressDialog.show(SignUpActivity.this, "Please wait...",null,true,true);
             mAuth.createUserWithEmailAndPassword(emailAuth, passwordAuth).addOnCompleteListener(new OnCompleteListener<AuthResult>() {
                 @Override
                 public void onComplete(@NonNull Task<AuthResult> task) {
@@ -73,7 +75,7 @@ public class SignUpActivity extends AppCompatActivity {
                         String userId = mAuth.getCurrentUser().getUid();
                         DatabaseReference currentUserDb = mDatabase.child(userId);
                         currentUserDb.child("name").setValue(firstnameAuth + " " + lastnameAuth);
-                        currentUserDb.child("imageUrl").setValue("");
+                        currentUserDb.child("imageUrl").setValue("https://ibb.co/iPVFfk");
                         currentUserDb.child("email").setValue(mAuth.getCurrentUser().getEmail());
 
                         FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
@@ -92,11 +94,9 @@ public class SignUpActivity extends AppCompatActivity {
                         Intent intent = new Intent(SignUpActivity.this, MainActivity.class);
                         intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
                         startActivity(intent);
-                        mProgress.dismiss();
 
                     } else {
                         Toast.makeText(SignUpActivity.this, "Your email is already registered or your password is less than 6 symbols", Toast.LENGTH_SHORT).show();
-                        mProgress.dismiss();
                     }
                 }
             });

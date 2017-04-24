@@ -13,13 +13,11 @@
 
     tools:context="fi.aalto.msp2017.shoppinglist.MainActivity">
 
-    <TextView
-        android:id="@+id/logo"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+    <ImageView
+        android:layout_width="100dp"
+        android:layout_height="100dp"
         android:layout_centerHorizontal="true"
-        android:textColor="#000000"
-        android:text="LOGO" />
+        android:src="@drawable/coop"/>
 
     <Button
         android:id="@+id/btnSignIn"
@@ -59,8 +57,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:orientation="vertical"
-        android:layout_marginTop="60dp"
-        android:layout_below="@+id/logo"
+        android:layout_marginTop="110dp"
         android:layout_alignLeft="@+id/btnSignup"
         android:layout_alignStart="@+id/btnSignup">
 

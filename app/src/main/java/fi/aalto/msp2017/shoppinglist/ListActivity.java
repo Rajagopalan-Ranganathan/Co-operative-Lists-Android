@@ -122,6 +122,9 @@ public class ListActivity extends AppCompatActivity {
                 startActivity(mainintent);
                 finish();
                 return true;
+            case R.id.action_account:
+                Intent intent = new Intent(ListActivity.this, AccountActivity.class);
+                startActivity(intent);
             default:
                 // If we got here, the user's action was not recognized.
                 // Invoke the superclass to handle it.
