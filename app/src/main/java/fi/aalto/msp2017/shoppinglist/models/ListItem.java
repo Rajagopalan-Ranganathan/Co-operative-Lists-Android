@@ -1,5 +1,6 @@
 package fi.aalto.msp2017.shoppinglist.models;
 
+import android.location.Location;
 import android.text.TextUtils;
 
 import com.firebase.client.ServerValue;
@@ -120,4 +121,7 @@ public class ListItem implements IItem {
     }
 
 
+    public void ShowCompany(Location current) {
+
+    }
 }

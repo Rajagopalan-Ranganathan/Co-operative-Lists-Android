@@ -3,6 +3,7 @@ package fi.aalto.msp2017.shoppinglist.adapters;
 import android.content.Context;
 import android.content.Intent;
 import android.graphics.Color;
+import android.location.Location;
 import android.support.v7.widget.CardView;
 import android.support.v7.widget.PopupMenu;
 import android.support.v7.widget.RecyclerView;
@@ -24,10 +25,12 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import fi.aalto.msp2017.shoppinglist.ListItemDetailsActivity;
 import fi.aalto.msp2017.shoppinglist.R;
+import fi.aalto.msp2017.shoppinglist.models.Adverts;
 import fi.aalto.msp2017.shoppinglist.models.IItem;
 import fi.aalto.msp2017.shoppinglist.models.ListItem;
 import fi.aalto.msp2017.shoppinglist.models.MasterItem;
@@ -44,6 +47,7 @@ public class ListItemAdapterRV extends RecyclerView.Adapter<ListItemAdapterRV.Li
     String listId;
     static class ListItemHolder extends RecyclerView.ViewHolder {
         ImageView thumbnail;
+        ImageView advert;
         TextView text;
         TextView txtDetails;
         TextView txtStatus;
@@ -55,6 +59,8 @@ public class ListItemAdapterRV extends RecyclerView.Adapter<ListItemAdapterRV.Li
 //            cv = (CardView) itemView.findViewById(R.id.cv);
             text = (TextView) itemView.findViewById(R.id.item_name);
             thumbnail = (ImageView) itemView.findViewById(R.id.icon);
+            advert = (ImageView) itemView.findViewById(R.id.advert);
+
             txtDetails = (TextView) itemView.findViewById(R.id.item_details);
             txtStatus = (TextView) itemView.findViewById(R.id.item_status);
             cv = (CardView) itemView.findViewById(R.id.cv);
@@ -64,6 +70,8 @@ public class ListItemAdapterRV extends RecyclerView.Adapter<ListItemAdapterRV.Li
     private static final String LOG_TAG = ListItemAdapter.class.getSimpleName();
     String type;
     String ownerId;
+    public List<Adverts> advertItems = new ArrayList<>();
+    Double latitude, longitude;
     public ListItemAdapterRV(Context context,
                              List<IItem> listItems, String type, String listID, String ownerId) {
         this.context = context;
@@ -71,6 +79,16 @@ public class ListItemAdapterRV extends RecyclerView.Adapter<ListItemAdapterRV.Li
         this.type = type;
         this.listId = listID;
         this.ownerId = ownerId;
+    }
+    public ListItemAdapterRV(Context context,
+                             List<IItem> listItems, String type, String listID, String ownerId, Double latitude, Double longitude) {
+        this.context = context;
+        this.listItems = listItems;
+        this.type = type;
+        this.listId = listID;
+        this.ownerId = ownerId;
+        this.latitude = latitude;
+        this.longitude = longitude;
     }
 
     @Override
@@ -93,6 +111,30 @@ public class ListItemAdapterRV extends RecyclerView.Adapter<ListItemAdapterRV.Li
         viewHolder.text.setText(listItemEntry.getItemName());
         viewHolder.txtDetails.setText(listItemEntry.GetMoreDetails());
         viewHolder.txtStatus.setText(listItemEntry.getStatus());
+        Log.d(LOG_TAG, "advert:"+advertItems.size());
+
+        for (Adverts ad : advertItems)
+        {
+            Log.d(LOG_TAG, "advert:"+ad.getKeyword()+":"+listItemEntry.getItemName().toLowerCase()+":"+ad.getKeyword().toLowerCase().equals(listItemEntry.getItemName().toLowerCase()));
+
+            if (ad.getKeyword().toLowerCase().equals(listItemEntry.getItemName().toLowerCase()))  {
+                Location startPoint=new Location("locationA");
+                startPoint.setLatitude(ad.getLatitude());
+                startPoint.setLongitude(ad.getLongitude());
+
+                Location endPoint=new Location("locationB");
+                endPoint.setLatitude(latitude);
+                endPoint.setLongitude(longitude);
+
+                double distance=startPoint.distanceTo(endPoint);
+                Log.d(LOG_TAG,"Distance:" + distance);
+                if(distance<1000) {
+                    viewHolder.advert.setImageResource(context.getResources().getIdentifier(ad.getCompany().toLowerCase(), "drawable", context.getPackageName()));
+                }
+            }
+
+        }
+
 
         Log.d(LOG_TAG, listItemEntry.getStatus());
         if(listItemEntry.getStatus().equals("(Purchased)")) {

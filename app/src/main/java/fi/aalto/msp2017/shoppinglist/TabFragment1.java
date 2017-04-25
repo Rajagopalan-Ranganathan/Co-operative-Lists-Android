@@ -13,6 +13,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.google.android.gms.common.api.GoogleApiClient;
 import com.google.firebase.database.DataSnapshot;
@@ -25,8 +26,11 @@ import java.util.ArrayList;
 import java.util.List;
 
 import fi.aalto.msp2017.shoppinglist.adapters.ListItemAdapterRV;
+import fi.aalto.msp2017.shoppinglist.models.Adverts;
 import fi.aalto.msp2017.shoppinglist.models.IItem;
 import fi.aalto.msp2017.shoppinglist.models.ListItem;
+
+import static com.facebook.FacebookSdk.getApplicationContext;
 
 
 /**
@@ -46,13 +50,12 @@ public class TabFragment1 extends Fragment {
     protected static final String LOG_TAG = "TabFragment 1";
     String listId = "";
     private String ownerId;
-
-
+    // GPSTracker class
+    GPSTracker gps;
+    double latitude,longitude;
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View v = inflater.inflate(R.layout.fragment_tab_fragment1, container, false);
-
-
         Intent i = getActivity().getIntent();
         Bundle extras = i.getExtras();
         listId = extras.get("LISTID").toString();
@@ -64,7 +67,35 @@ public class TabFragment1 extends Fragment {
         LinearLayoutManager llm = new LinearLayoutManager(v.getContext());
         rv.setLayoutManager(llm);
         rv.setHasFixedSize(true);
-        PopulateGVInList();
+        gps = new GPSTracker(this.getActivity().getApplicationContext());
+
+
+//        DatabaseReference advertdb = database.getReference("adverts");
+//        advertdb.push().setValue(new Adverts("40", "60", "milk", "alepa"));
+//        advertdb.push().setValue(new Adverts("44", "160", "rice", "alepa"));
+//        advertdb.push().setValue(new Adverts("40", "60", "curd", "alepa"));
+
+
+        Log.d(LOG_TAG, ""+gps.getLatitude());
+
+            if(gps.canGetLocation()){
+
+                latitude = gps.getLatitude();
+                longitude = gps.getLongitude();
+
+                // \n is for new line
+                Toast.makeText(getApplicationContext(), "Your Location is - \nLat: " + latitude + "\nLong: " + longitude, Toast.LENGTH_LONG).show();
+            }else{
+                // can't get location
+                // GPS or Network is not enabled
+                // Ask user to enable GPS/network in settings
+                gps.showSettingsAlert();
+
+        }
+        rvadapter = new ListItemAdapterRV(this.getContext(), inListItems,"INLIST", listId, ownerId, latitude, longitude);
+
+        GetAdverts();
+//        PopulateGVInList();
         searchTxt.addTextChangedListener(new TextWatcher() {
 
             @Override
@@ -85,10 +116,32 @@ public class TabFragment1 extends Fragment {
 
         return v;
     }
+    List<Adverts> advertItems = new ArrayList<>();
 
+    public void GetAdverts()
+    {
+        final DatabaseReference advertdb = database.getReference("adverts");
+        advertdb.addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(DataSnapshot dataSnapshot) {
+                advertItems.clear();
+                for (DataSnapshot snapshot : dataSnapshot.getChildren()) {
+                    Adverts item = snapshot.getValue(Adverts.class);
+                    advertItems.add(item);
+                }
+                Log.d(LOG_TAG, "ADVERTS:"+advertItems.size());
+                rvadapter.advertItems = advertItems;
+                PopulateGVInList();
+            }
+            @Override
+            public void onCancelled(DatabaseError databaseError) {
+            }
+        });
+
+
+
+    }
     private void PopulateGVInList(){
-
-        rvadapter = new ListItemAdapterRV(this.getContext(), inListItems,"INLIST", listId, ownerId);
         final String searchtext = searchTxt.getText().toString();
         Log.d(LOG_TAG, "SearchText: "+searchtext);
         listItemRef.addValueEventListener(new ValueEventListener() {
@@ -99,7 +152,6 @@ public class TabFragment1 extends Fragment {
                     ListItem item = snapshot.getValue(ListItem.class);
                     if(item.getSearchResult(searchtext)) {
                             inListItems.add(item);
-
                     }
                 }
                 rvadapter.notifyDataSetChanged();
