@@ -15,6 +15,14 @@
       },
       "oauth_client": [
         {
+          "client_id": "5110116754-m32don796spiohftj7i9qb1kc68pj1ea.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "fi.aalto.msp2017.shoppinglist",
+            "certificate_hash": "59622d8d3161ae11cfa7d0ae7d68956322693296"
+          }
+        },
+        {
           "client_id": "5110116754-psp7su2sul56cs9qr9orh8atgphl271o.apps.googleusercontent.com",
           "client_type": 3
         }
@@ -29,8 +37,13 @@
           "status": 1
         },
         "appinvite_service": {
-          "status": 1,
-          "other_platform_oauth_client": []
+          "status": 2,
+          "other_platform_oauth_client": [
+            {
+              "client_id": "5110116754-psp7su2sul56cs9qr9orh8atgphl271o.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
         },
         "ads_service": {
           "status": 2

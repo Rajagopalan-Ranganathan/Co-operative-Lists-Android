@@ -55,7 +55,6 @@ public class MasterItem implements IItem {
         return timestampCreated;
     }
 
-    @Exclude
     public String getImageName()
     {
         if (TextUtils.isEmpty(imageName))
@@ -80,6 +79,8 @@ public class MasterItem implements IItem {
     {
         return "";
     }
+
+    @Exclude
     public String getStatus()
     {
         return "";

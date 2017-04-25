@@ -13,7 +13,6 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.google.android.gms.common.api.GoogleApiClient;
 import com.google.firebase.database.DataSnapshot;
@@ -29,8 +28,6 @@ import fi.aalto.msp2017.shoppinglist.adapters.ListItemAdapterRV;
 import fi.aalto.msp2017.shoppinglist.models.Adverts;
 import fi.aalto.msp2017.shoppinglist.models.IItem;
 import fi.aalto.msp2017.shoppinglist.models.ListItem;
-
-import static com.facebook.FacebookSdk.getApplicationContext;
 
 
 /**
@@ -84,7 +81,7 @@ public class TabFragment1 extends Fragment {
                 longitude = gps.getLongitude();
 
                 // \n is for new line
-                Toast.makeText(getApplicationContext(), "Your Location is - \nLat: " + latitude + "\nLong: " + longitude, Toast.LENGTH_LONG).show();
+//                Toast.makeText(getApplicationContext(), "Your Location is - \nLat: " + latitude + "\nLong: " + longitude, Toast.LENGTH_LONG).show();
             }else{
                 // can't get location
                 // GPS or Network is not enabled

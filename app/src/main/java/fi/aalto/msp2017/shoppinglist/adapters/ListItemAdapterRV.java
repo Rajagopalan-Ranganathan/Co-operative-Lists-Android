@@ -111,27 +111,28 @@ public class ListItemAdapterRV extends RecyclerView.Adapter<ListItemAdapterRV.Li
         viewHolder.text.setText(listItemEntry.getItemName());
         viewHolder.txtDetails.setText(listItemEntry.GetMoreDetails());
         viewHolder.txtStatus.setText(listItemEntry.getStatus());
-        Log.d(LOG_TAG, "advert:"+advertItems.size());
+//        Log.d(LOG_TAG, "advert:"+advertItems.size());
 
         for (Adverts ad : advertItems)
         {
-            Log.d(LOG_TAG, "advert:"+ad.getKeyword()+":"+listItemEntry.getItemName().toLowerCase()+":"+ad.getKeyword().toLowerCase().equals(listItemEntry.getItemName().toLowerCase()));
-
             if (ad.getKeyword().toLowerCase().equals(listItemEntry.getItemName().toLowerCase()))  {
                 Location startPoint=new Location("locationA");
                 startPoint.setLatitude(ad.getLatitude());
                 startPoint.setLongitude(ad.getLongitude());
-
                 Location endPoint=new Location("locationB");
                 endPoint.setLatitude(latitude);
                 endPoint.setLongitude(longitude);
-
                 double distance=startPoint.distanceTo(endPoint);
-                Log.d(LOG_TAG,"Distance:" + distance);
+//                Log.d(LOG_TAG,"Distance:" + distance);
                 if(distance<1000) {
+                    Log.d(LOG_TAG, "advert:"+ad.getKeyword()+":"+listItemEntry.getItemName().toLowerCase());
+//                    viewHolder.advert.setVisibility(View.VISIBLE);
                     viewHolder.advert.setImageResource(context.getResources().getIdentifier(ad.getCompany().toLowerCase(), "drawable", context.getPackageName()));
                 }
             }
+//            else {
+//                viewHolder.advert.setVisibility(View.GONE);
+//            }
 
         }
 
