@@ -18,6 +18,7 @@ import com.facebook.CallbackManager;
 import com.facebook.FacebookCallback;
 import com.facebook.FacebookException;
 import com.facebook.FacebookSdk;
+import com.facebook.Profile;
 import com.facebook.login.LoginManager;
 import com.facebook.login.LoginResult;
 import com.facebook.login.widget.LoginButton;
@@ -143,8 +144,9 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onAuthStateChanged(@NonNull FirebaseAuth firebaseAuth) {
                 FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
+                Profile profile = Profile.getCurrentProfile();
                 if (firebaseAuth.getCurrentUser() != null) {
-                    if (user.isEmailVerified()|| LoginManager.getInstance()!=null) {
+                    if (user.isEmailVerified()|| profile!=null) {
                         Log.wtf("User", firebaseAuth.getCurrentUser().getEmail());
                         Intent intent = new Intent(MainActivity.this, ListActivity.class);
                         startActivity(intent);
