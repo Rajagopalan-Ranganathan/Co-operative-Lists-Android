@@ -18,6 +18,7 @@ import com.facebook.CallbackManager;
 import com.facebook.FacebookCallback;
 import com.facebook.FacebookException;
 import com.facebook.FacebookSdk;
+import com.facebook.login.LoginManager;
 import com.facebook.login.LoginResult;
 import com.facebook.login.widget.LoginButton;
 import com.google.android.gms.auth.api.Auth;
@@ -41,6 +42,8 @@ import com.google.firebase.database.FirebaseDatabase;
 
 import cc.cloudist.acplibrary.ACProgressConstant;
 import cc.cloudist.acplibrary.ACProgressFlower;
+
+import static fi.aalto.msp2017.shoppinglist.R.menu.profile;
 
 
 public class MainActivity extends AppCompatActivity {
@@ -141,7 +144,7 @@ public class MainActivity extends AppCompatActivity {
             public void onAuthStateChanged(@NonNull FirebaseAuth firebaseAuth) {
                 FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
                 if (firebaseAuth.getCurrentUser() != null) {
-                    if (user.isEmailVerified()) {
+                    if (user.isEmailVerified()|| LoginManager.getInstance()!=null) {
                         Log.wtf("User", firebaseAuth.getCurrentUser().getEmail());
                         Intent intent = new Intent(MainActivity.this, ListActivity.class);
                         startActivity(intent);
@@ -207,8 +210,7 @@ public class MainActivity extends AppCompatActivity {
                     if (task.isSuccessful()) {
                         dialog.dismiss();
                         FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
-                        if(true)
-                        //if (user.isEmailVerified())
+                        if (user.isEmailVerified())
                         {
                             Intent intent = new Intent(MainActivity.this, ListActivity.class);
                             Toast.makeText(MainActivity.this, "Login successful", Toast.LENGTH_SHORT).show();
@@ -317,7 +319,6 @@ public class MainActivity extends AppCompatActivity {
                     @Override
                     public void onComplete(@NonNull Task<AuthResult> task) {
                         Log.wtf("myTag", "signInWithCredential:onComplete:" + task.isSuccessful());
-
                         String username = mAuth.getCurrentUser().getDisplayName();;
                         String userId = mAuth.getCurrentUser().getUid();
                         String facebookId = "";

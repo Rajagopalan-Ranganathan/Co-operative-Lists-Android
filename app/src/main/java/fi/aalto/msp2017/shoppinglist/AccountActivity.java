@@ -114,6 +114,8 @@ public class AccountActivity extends AppCompatActivity {
             case R.id.action_account:
                 Intent intent1 = new Intent(AccountActivity.this, AccountActivity.class);
                 startActivity(intent1);
+                btnUpd.setVisibility(View.INVISIBLE);
+                pass.setVisibility(View.INVISIBLE);
             case R.id.action_upd:
                 btnUpd.setVisibility(View.VISIBLE);
                 pass.setVisibility(View.VISIBLE);
