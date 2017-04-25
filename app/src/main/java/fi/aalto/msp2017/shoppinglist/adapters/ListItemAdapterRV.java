@@ -193,6 +193,7 @@ public class ListItemAdapterRV extends RecyclerView.Adapter<ListItemAdapterRV.Li
                         selectedItem.SaveToDB();
                     }
                     ListItem li = new ListItem(selectedItem.getItemName(), null, selectedItem.getItemKey());
+                    li.setImageName(selectedItem.getImageName());
                     li.SaveToDB(listId);
                     listItems.remove(selectedItem);
             }

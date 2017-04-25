@@ -5,7 +5,6 @@ import android.text.TextUtils;
 
 import com.firebase.client.ServerValue;
 import com.google.firebase.database.DatabaseReference;
-import com.google.firebase.database.Exclude;
 import com.google.firebase.database.FirebaseDatabase;
 
 import java.util.HashMap;
@@ -21,6 +20,7 @@ public class ListItem implements IItem {
     private Integer quantity;
     private HashMap<String, Object> timestampCreated;
     private String itemKey;
+    private String imageName;
     private String status = "(Not Purchased)";
     DatabaseReference masterItemRef;
     DatabaseReference listItemRef;
@@ -29,7 +29,6 @@ public class ListItem implements IItem {
 
     public ListItem(){}
 
-    private String imageName;
 
     private ListItem(String itemName, String owner) {
         this.itemName = itemName;
@@ -62,7 +61,6 @@ public class ListItem implements IItem {
         return timestampCreated;
     }
 
-    @Exclude
     public String getImageName()
     {
         if (TextUtils.isEmpty(imageName))
