@@ -30,9 +30,10 @@ import fi.aalto.msp2017.shoppinglist.models.IItem;
 import fi.aalto.msp2017.shoppinglist.models.ListItem;
 
 
-/**
-
+/*
+ * Tab fragment class
  */
+
 public class TabFragment1 extends Fragment {
     private RecyclerView rv;
     ListItemAdapterRV rvadapter;
@@ -66,33 +67,23 @@ public class TabFragment1 extends Fragment {
         rv.setHasFixedSize(true);
         gps = new GPSTracker(this.getActivity().getApplicationContext());
 
-
-//        DatabaseReference advertdb = database.getReference("adverts");
-//        advertdb.push().setValue(new Adverts("40", "60", "milk", "alepa"));
-//        advertdb.push().setValue(new Adverts("44", "160", "rice", "alepa"));
-//        advertdb.push().setValue(new Adverts("40", "60", "curd", "alepa"));
-
-
         Log.d(LOG_TAG, ""+gps.getLatitude());
 
-            if(gps.canGetLocation()){
+        if(gps.canGetLocation()){
 
-                latitude = gps.getLatitude();
-                longitude = gps.getLongitude();
+            latitude = gps.getLatitude();
+            longitude = gps.getLongitude();
 
-                // \n is for new line
-//                Toast.makeText(getApplicationContext(), "Your Location is - \nLat: " + latitude + "\nLong: " + longitude, Toast.LENGTH_LONG).show();
-            }else{
-                // can't get location
-                // GPS or Network is not enabled
-                // Ask user to enable GPS/network in settings
-                gps.showSettingsAlert();
+        }else{
+            // can't get location
+            // GPS or Network is not enabled
+            // Ask user to enable GPS/network in settings
+            gps.showSettingsAlert();
 
         }
         rvadapter = new ListItemAdapterRV(this.getContext(), inListItems,"INLIST", listId, ownerId, latitude, longitude);
 
         GetAdverts();
-//        PopulateGVInList();
         searchTxt.addTextChangedListener(new TextWatcher() {
 
             @Override

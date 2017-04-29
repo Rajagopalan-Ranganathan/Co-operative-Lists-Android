@@ -224,7 +224,6 @@ public class ShoppingListActivity extends AppCompatActivity {
                             listItems.add(item);
                         }
                     }
-                    //Log.d(LOG_TAG, "List Item Added: " + listItems.size());
                 }
                 notInListItemAdapter.notifyDataSetChanged();
             }
@@ -264,7 +263,6 @@ public class ShoppingListActivity extends AppCompatActivity {
             }
         });
         gvNotInList.setAdapter(notInListItemAdapter);
-        //historyListView.setAdapter(listItemAdapter);
     }
 
     private boolean isPresentInList(MasterItem item) {

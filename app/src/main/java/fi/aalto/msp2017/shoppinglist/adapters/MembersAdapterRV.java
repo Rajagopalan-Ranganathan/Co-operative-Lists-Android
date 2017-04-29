@@ -28,6 +28,10 @@ import fi.aalto.msp2017.shoppinglist.models.User;
  * Created by sunil on 18-04-2017.
  */
 
+/*
+ * Members - Recycler view
+ */
+
 public class MembersAdapterRV extends RecyclerView.Adapter<MembersAdapterRV.ListItemHolder> {
     private Context context;
     private List<User> memberItems;
@@ -41,7 +45,6 @@ public class MembersAdapterRV extends RecyclerView.Adapter<MembersAdapterRV.List
         public ListItemHolder(View itemView) {
             super(itemView);
             itemView.getContext();
-//            cv = (CardView) itemView.findViewById(R.id.cv);
             name = (TextView) itemView.findViewById(R.id.item_name);
             mcv_image = (ImageView) itemView.findViewById(R.id.icon);
             cv = (CardView) itemView.findViewById(R.id.cv);
@@ -72,7 +75,6 @@ public class MembersAdapterRV extends RecyclerView.Adapter<MembersAdapterRV.List
     @Override
     public void onBindViewHolder(final ListItemHolder viewHolder, final int i) {
         final User memberItem = memberItems.get(i);
-//        viewHolder.mcv_image.setImageResource(context.getResources().getIdentifier(memberItem.get(), "drawable", context.getPackageName()));
         viewHolder.name.setText(memberItem.getName());
         Glide.with(context)
                 .load(memberItem.getImageUrl())

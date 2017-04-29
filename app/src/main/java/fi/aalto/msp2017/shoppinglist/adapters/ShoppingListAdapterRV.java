@@ -33,6 +33,9 @@ import fi.aalto.msp2017.shoppinglist.models.User;
  * Created by raj on 18/4/17.
  */
 
+/*
+ * Shopping list - Recycler view
+ */
 
 public class ShoppingListAdapterRV extends RecyclerView.Adapter<ShoppingListAdapterRV.ListHolder> {
     private Context context;
@@ -42,7 +45,6 @@ public class ShoppingListAdapterRV extends RecyclerView.Adapter<ShoppingListAdap
     static class ListHolder extends RecyclerView.ViewHolder {
         ImageView thumbnail;
         TextView text;
-       // TextView txtDetails;
         CardView cv;
 
         public ListHolder(View itemView) {
@@ -78,7 +80,6 @@ public class ShoppingListAdapterRV extends RecyclerView.Adapter<ShoppingListAdap
         final ShoppingList listItemEntry = listItems.get(i);
         viewHolder.thumbnail.setImageResource(context.getResources().getIdentifier(listItemEntry.getImageName(), "drawable", context.getPackageName()));
         viewHolder.text.setText(listItemEntry.getListName());
-       // viewHolder.txtDetails.setText(listItemEntry.GetMoreDetails());
         viewHolder.cv.setOnLongClickListener(new View.OnLongClickListener() {
             @Override
             public boolean onLongClick(View view) {
@@ -161,9 +162,6 @@ public class ShoppingListAdapterRV extends RecyclerView.Adapter<ShoppingListAdap
                     }
 
                 });
-
-
-
     }
 
 }

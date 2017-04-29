@@ -39,6 +39,11 @@ import fi.aalto.msp2017.shoppinglist.models.MasterItem;
  * Created by sunil on 17-04-2017.
  */
 
+
+/*
+ * List item Adapter - Recycler view
+ */
+
 public class ListItemAdapterRV extends RecyclerView.Adapter<ListItemAdapterRV.ListItemHolder> {
     private Context context;
     private List<IItem> listItems;
@@ -56,7 +61,6 @@ public class ListItemAdapterRV extends RecyclerView.Adapter<ListItemAdapterRV.Li
         public ListItemHolder(View itemView) {
             super(itemView);
             itemView.getContext();
-//            cv = (CardView) itemView.findViewById(R.id.cv);
             text = (TextView) itemView.findViewById(R.id.item_name);
             thumbnail = (ImageView) itemView.findViewById(R.id.icon);
             advert = (ImageView) itemView.findViewById(R.id.advert);
@@ -111,7 +115,13 @@ public class ListItemAdapterRV extends RecyclerView.Adapter<ListItemAdapterRV.Li
         viewHolder.text.setText(listItemEntry.getItemName());
         viewHolder.txtDetails.setText(listItemEntry.GetMoreDetails());
         viewHolder.txtStatus.setText(listItemEntry.getStatus());
-//        Log.d(LOG_TAG, "advert:"+advertItems.size());
+
+        /*
+         Location based - Advertisement
+
+         If one of the partner - Supermarkets or shops are within 1000 meters, then the shop logo will be displayed
+         next to the item
+         */
 
         for (Adverts ad : advertItems)
         {
@@ -123,20 +133,16 @@ public class ListItemAdapterRV extends RecyclerView.Adapter<ListItemAdapterRV.Li
                 endPoint.setLatitude(latitude);
                 endPoint.setLongitude(longitude);
                 double distance=startPoint.distanceTo(endPoint);
-//                Log.d(LOG_TAG,"Distance:" + distance);
+
                 if(distance<1000) {
                     Log.d(LOG_TAG, "advert:"+ad.getKeyword()+":"+listItemEntry.getItemName().toLowerCase());
-//                    viewHolder.advert.setVisibility(View.VISIBLE);
                     viewHolder.advert.setImageResource(context.getResources().getIdentifier(ad.getCompany().toLowerCase(), "drawable", context.getPackageName()));
                 }
             }
-//            else {
-//                viewHolder.advert.setVisibility(View.GONE);
-//            }
-
         }
 
 
+        // Get the status of the list item - if purhcased change color
         Log.d(LOG_TAG, listItemEntry.getStatus());
         if(listItemEntry.getStatus().equals("(Purchased)")) {
             viewHolder.txtStatus.setTextColor(Color.parseColor("#8BC34A"));
@@ -156,34 +162,12 @@ public class ListItemAdapterRV extends RecyclerView.Adapter<ListItemAdapterRV.Li
                    popup.setOnMenuItemClickListener(new MyMenuItemClickListener(selectedItem));
                    popup.show();
 
-
-                   //                   if(ownerId.equals(FirebaseAuth.getInstance().getCurrentUser().getUid())) {
-//                       ListItem selectedItem = (ListItem) listItemEntry;
-//                       Log.d(LOG_TAG, "Deleted Item : " + selectedItem.getItemKey());
-//                       listItemRef = database.getReference("shoppinglist").child(listId).child("items");
-//                       listItemRef.orderByChild("itemKey").equalTo(selectedItem.getItemKey()).addListenerForSingleValueEvent(
-//                               new ValueEventListener() {
-//                                   @Override
-//                                   public void onDataChange(DataSnapshot dataSnapshot) {
-//                                       for (DataSnapshot ds : dataSnapshot.getChildren()) {
-//                                           ds.getRef().setValue(null);
-//                                       }
-//                                   }
-//
-//                                   @Override
-//                                   public void onCancelled(DatabaseError databaseError) {
-//                                       Log.w("TodoApp", "getUser:onCancelled", databaseError.toException());
-//                                   }
-//
-//                               });
-//                   }
-//                   else {
-//                       Toast.makeText(context,"Only owner can remove items", Toast.LENGTH_SHORT).show();
-//                   }
                }
                 return true;
             }
         });
+
+        //If the searched item is not there in the list - create one and save to DB
         viewHolder.cv.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

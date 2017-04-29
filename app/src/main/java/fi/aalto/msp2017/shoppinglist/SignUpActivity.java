@@ -53,8 +53,6 @@ public class SignUpActivity extends AppCompatActivity {
     }
 
 
-
-
     //method to SIGN UP with email:password
     private void emailSignup() {
 

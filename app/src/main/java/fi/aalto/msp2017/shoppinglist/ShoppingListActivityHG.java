@@ -117,7 +117,6 @@ public class ShoppingListActivityHG extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 final DatabaseReference listItemRef = database.getReference("masteritems");
-//                listItemRef.push().setValue(new ListItem(edit_Title.getText().toString(), null));
             }
         });
         ((TwoWayGridView) findViewById(R.id.gvUnassigned)).setOnItemLongClickListener(new TwoWayAdapterView.OnItemLongClickListener() {
@@ -266,7 +265,6 @@ public class ShoppingListActivityHG extends AppCompatActivity {
             }
         });
         gvNotInList.setAdapter(notInListItemAdapter);
-        //historyListView.setAdapter(listItemAdapter);
     }
 
     private boolean isPresentInList(MasterItem item) {

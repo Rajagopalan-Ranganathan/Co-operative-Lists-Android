@@ -23,9 +23,7 @@ public class ShoppingListActivityTab extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_shopping_list_tab);
 
-//        Toolbar myToolbar = (Toolbar) findViewById(R.id.toolbar);
-//        setSupportActionBar(myToolbar);
-                TabLayout tabLayout = (TabLayout) findViewById(R.id.tab_layout);
+        TabLayout tabLayout = (TabLayout) findViewById(R.id.tab_layout);
         tabLayout.addTab(tabLayout.newTab().setText("List"));
         tabLayout.addTab(tabLayout.newTab().setText("Add"));
         tabLayout.setTabGravity(TabLayout.GRAVITY_FILL);
