@@ -76,6 +76,8 @@ public class MembersAdapterRV extends RecyclerView.Adapter<MembersAdapterRV.List
     public void onBindViewHolder(final ListItemHolder viewHolder, final int i) {
         final User memberItem = memberItems.get(i);
         viewHolder.name.setText(memberItem.getName());
+
+        // Glide image handling library - load the image with the desired properties
         Glide.with(context)
                 .load(memberItem.getImageUrl())
                 .override(64,64)
@@ -83,6 +85,8 @@ public class MembersAdapterRV extends RecyclerView.Adapter<MembersAdapterRV.List
                 .placeholder(R.mipmap.ic_launcher)
                 .crossFade()
                 .into(viewHolder.mcv_image);
+
+        // Cardview - long press listener method
         viewHolder.cv.setOnLongClickListener(new View.OnLongClickListener() {
             @Override
             public boolean onLongClick(View view) {

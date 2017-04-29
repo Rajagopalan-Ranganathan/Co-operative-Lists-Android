@@ -98,6 +98,8 @@ public class ShoppingListAdapterRV extends RecyclerView.Adapter<ShoppingListAdap
                 return true;
             }
         });
+
+        // on single lick - new intent displaying the list clicked
         viewHolder.cv.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -117,6 +119,7 @@ public class ShoppingListAdapterRV extends RecyclerView.Adapter<ShoppingListAdap
                 }});
     }
 
+    // Delete the shopping list method
     private void DeleteShoppingList(ShoppingList listItemEntry) {
         ShoppingList selectedItem = listItemEntry;
         Log.d(LOG_TAG, "Deleted Item : " + selectedItem.getListName());
@@ -135,6 +138,7 @@ public class ShoppingListAdapterRV extends RecyclerView.Adapter<ShoppingListAdap
         return listItems.size();
     }
 
+    //Add an user to the shopping list
     private void AddUser(String listID, final String ownerID) {
 
         final DatabaseReference userRef = database.getReference("users").child(ownerID);

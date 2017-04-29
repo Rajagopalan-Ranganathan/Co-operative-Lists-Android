@@ -11,6 +11,9 @@ import android.support.v4.app.FragmentStatePagerAdapter;
 import fi.aalto.msp2017.shoppinglist.TabFragment1;
 import fi.aalto.msp2017.shoppinglist.TabFragment2;
 
+/*
+Pager adapter class - returns the tabs based on the position
+ */
 public class PagerAdapter extends FragmentStatePagerAdapter {
     int mNumOfTabs;
 

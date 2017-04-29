@@ -201,6 +201,12 @@ public class ListItemAdapterRV extends RecyclerView.Adapter<ListItemAdapterRV.Li
             this.li = li;
         }
 
+        /*
+         * handle the different menu actions
+         * Assign the list item to myself - the current user loggedin
+         * Mark the item as purchased
+         * Delete the List item
+         */
         @Override
         public boolean onMenuItemClick(MenuItem menuItem) {
             switch (menuItem.getItemId()) {

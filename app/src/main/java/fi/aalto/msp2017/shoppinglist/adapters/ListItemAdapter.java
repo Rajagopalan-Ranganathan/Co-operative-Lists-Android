@@ -18,6 +18,11 @@ import fi.aalto.msp2017.shoppinglist.models.IItem;
  * Created by sunil on 14-04-2017.
  */
 
+/*
+ * List item adapter class
+ * sets the layout inflater
+ */
+
 public class ListItemAdapter extends ArrayAdapter<IItem> {
     private Activity context;
     private List<IItem> listItems;
