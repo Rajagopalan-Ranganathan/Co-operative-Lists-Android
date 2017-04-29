@@ -29,6 +29,10 @@ import fi.aalto.msp2017.shoppinglist.models.ListItem;
 import fi.aalto.msp2017.shoppinglist.models.MasterItem;
 import fi.aalto.msp2017.shoppinglist.models.ShoppingList;
 
+/*
+ * Class - ShoppingListAcivityHG
+ */
+
 public class ShoppingListActivityHG extends AppCompatActivity {
     private EditText edit_Title, edit_Search_Item;
     final FirebaseDatabase database = FirebaseDatabase.getInstance();

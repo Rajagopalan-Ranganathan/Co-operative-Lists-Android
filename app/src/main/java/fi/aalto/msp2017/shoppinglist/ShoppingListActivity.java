@@ -28,6 +28,11 @@ import fi.aalto.msp2017.shoppinglist.models.ListItem;
 import fi.aalto.msp2017.shoppinglist.models.MasterItem;
 import fi.aalto.msp2017.shoppinglist.models.ShoppingList;
 
+/*
+ * Class - ShoppingListActivity
+ * Hanles the different shopping lists created by the user
+ */
+
 public class ShoppingListActivity extends AppCompatActivity {
     private EditText edit_Title, edit_Search_Item;
     final FirebaseDatabase database = FirebaseDatabase.getInstance();

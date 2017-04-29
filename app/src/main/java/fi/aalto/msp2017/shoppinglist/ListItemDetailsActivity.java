@@ -23,6 +23,10 @@ import com.google.firebase.database.ValueEventListener;
 
 import fi.aalto.msp2017.shoppinglist.models.ListItem;
 
+/*
+ * Class - ListItemDetailsActivity
+ * Handles the List Item details
+ */
 public class ListItemDetailsActivity extends AppCompatActivity {
     final FirebaseDatabase database = FirebaseDatabase.getInstance();
     private static final String LOG_TAG = ListItemDetailsActivity.class.getSimpleName();

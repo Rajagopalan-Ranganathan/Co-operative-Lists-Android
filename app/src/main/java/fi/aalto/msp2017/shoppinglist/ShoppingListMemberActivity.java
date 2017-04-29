@@ -26,6 +26,10 @@ import java.util.List;
 import fi.aalto.msp2017.shoppinglist.adapters.MembersAdapterRV;
 import fi.aalto.msp2017.shoppinglist.models.User;
 
+/*
+ * Class - shoppingListMemberActivity
+ * Handles the shopping list members
+ */
 public class ShoppingListMemberActivity extends AppCompatActivity {
     DatabaseReference shoppingListMemberRef;
     final FirebaseDatabase database = FirebaseDatabase.getInstance();

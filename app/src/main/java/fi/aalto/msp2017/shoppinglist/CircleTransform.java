@@ -10,6 +10,11 @@ import android.os.Bundle;
 import com.squareup.picasso.Transformation;
 
 
+/*
+ * Class - Circle transform
+ * Returns a transformed bitmap image in circular form
+ */
+
 public class CircleTransform implements Transformation {
     @Override
     public Bitmap transform(Bitmap source) {

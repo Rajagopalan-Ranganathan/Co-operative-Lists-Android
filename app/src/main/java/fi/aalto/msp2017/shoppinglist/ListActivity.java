@@ -26,6 +26,10 @@ import java.util.List;
 import fi.aalto.msp2017.shoppinglist.adapters.ShoppingListAdapterRV;
 import fi.aalto.msp2017.shoppinglist.models.ShoppingList;
 
+/*
+ * Class - ListActvity
+ * Handles the shopping lists
+ */
 public class ListActivity extends AppCompatActivity {
 
     private RecyclerView rv;

@@ -13,7 +13,10 @@ import com.google.firebase.auth.FirebaseAuth;
 
 import fi.aalto.msp2017.shoppinglist.adapters.PagerAdapter;
 
-
+/*
+ * Class - Shopping ListActivityTab
+ *  Handles the shopping list tab
+ */
 public class ShoppingListActivityTab extends AppCompatActivity {
 
     private String listID;

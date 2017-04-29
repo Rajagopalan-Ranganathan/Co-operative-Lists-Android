@@ -34,6 +34,11 @@ import com.squareup.picasso.Callback;
 
 import java.util.Map;
 
+/*
+ * Class - Account activity
+ * Handles user accounts
+ */
+
 public class AccountActivity extends AppCompatActivity {
 
     RelativeLayout profileContent;

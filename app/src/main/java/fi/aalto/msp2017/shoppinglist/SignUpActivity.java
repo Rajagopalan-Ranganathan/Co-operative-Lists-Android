@@ -24,6 +24,11 @@ import com.google.firebase.database.FirebaseDatabase;
 import cc.cloudist.acplibrary.ACProgressConstant;
 import cc.cloudist.acplibrary.ACProgressFlower;
 
+/*
+ * Class - SignupActivity
+ * Handles the registration of a new user
+ */
+
 public class SignUpActivity extends AppCompatActivity {
 
     EditText email, password, first_name, last_name;

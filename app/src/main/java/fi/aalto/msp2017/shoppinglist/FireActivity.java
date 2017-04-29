@@ -5,6 +5,11 @@ import android.support.v7.app.AppCompatActivity;
 
 import com.firebase.client.Firebase;
 
+/*
+ * Class - Fireactivity
+ * Sets the android context
+ */
+
 public class FireActivity extends AppCompatActivity {
 
     @Override

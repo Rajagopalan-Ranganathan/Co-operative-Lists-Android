@@ -46,6 +46,10 @@ import cc.cloudist.acplibrary.ACProgressFlower;
 
 import static fi.aalto.msp2017.shoppinglist.R.menu.profile;
 
+/*
+ * Class - MainActivity
+ * Handles the Login activity
+ */
 
 public class MainActivity extends AppCompatActivity {
 

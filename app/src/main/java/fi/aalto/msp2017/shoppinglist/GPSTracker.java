@@ -19,6 +19,11 @@ import android.util.Log;
  * Created by sunil on 25-04-2017.
  */
 
+/*
+ * Class GPSTracker
+ * Get the GPS location
+ */
+
 public class GPSTracker extends Service implements LocationListener {
     private final Context mContext;
     protected static final String LOG_TAG = "GPSTRACKER";

@@ -29,9 +29,10 @@ import fi.aalto.msp2017.shoppinglist.models.ListItem;
 import fi.aalto.msp2017.shoppinglist.models.MasterItem;
 
 
-/**
-
+/*
+ * Class - TabFragment2
  */
+
 public class TabFragment2 extends Fragment {
     private RecyclerView rv;
     ListItemAdapterRV rvadapter;
